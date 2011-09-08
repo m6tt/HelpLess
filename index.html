@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <title>HelpLess | Less helpers</title>
-  
+
   <link rel="shortcut icon" href="favicon.ico">
 
   <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
@@ -19,16 +19,16 @@
   <script>
     jQuery(function() {
       $(document).ready(function() {
-        
+
         var scrollToTop;
-        
+
         function init()
         {
           $('html').addClass('jquery');
           prettyPrint();
           insertScrollToTop();
         }
-        
+
         function insertScrollToTop()
         {
           scrollToTop = $('<div id="scroll-to-top"><p>Top</p></div>');
@@ -38,7 +38,7 @@
             $('html, body').animate({scrollTop:0}, 'slow');
           });
         }
-        
+
         $(window).scroll(function(e)
         {
           var scrollTop = $(window).scrollTop();
@@ -57,12 +57,12 @@
             }
           }
         });
-        
+
         $('article .content').each(function() {
           $(this).hide();
           $(this).parent().children('h2').append('<span class="toggle"></span>');
         });
-        
+
         $('article h2').click(function()
         {
           var article = $(this).parent();
@@ -84,7 +84,7 @@
             $(this).next().slideDown();
             article.addClass('active');
             $(this).children('span.toggle').addClass('active');
-            
+
           }
           else
           {
@@ -92,9 +92,9 @@
             article.removeClass('active');
           }
         });
-        
+
         init();
-        
+
       });
     });
   </script>
@@ -103,21 +103,21 @@
 <body>
   <div id="container">
     <header>
-      <a href=""><img src="img/logo.png" alt="Logo" /></a>
-      <a href=""><h1>HelpLess</h1></a>
-      <button type="button" class="download">Download now<span class="download-icon"></span></button>
-      <a href="http://github.com/you"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://a248.e.akamai.net/assets.github.com/img/e6bef7a091f5f3138b8cd40bc3e114258dd68ddf/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork me on GitHub"></a>
+      <a href="http://m6tt.github.com/HelpLess"><img src="img/logo.png" alt="Logo" /></a>
+      <a href="http://m6tt.github.com/HelpLess"><h1>HelpLess</h1></a>
+      <button type="button" class="download" href="http://m6tt.github.com/HelpLess">Download now<span class="download-icon"></span></button>
+      <a href="http://github.com/m6tt"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://a248.e.akamai.net/assets.github.com/img/e6bef7a091f5f3138b8cd40bc3e114258dd68ddf/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork me on GitHub"></a>
     </header>
 
     <div id="main" role="main">
-      
+
       <section id="intro">
         <p>HelpLess is a Helper Library for the increasingly popular LESS dynamic stylesheet language. Read more about LESS <a href="http://lesscss.org/">here</a>.</p>
         <p>Simply import helpless.less and let it make your life easier.</p>
       </section>
-      
+
       <section>
-        
+
         <!-- Import -->
         <article id="import">
           <h2>How to import</h2>
@@ -135,7 +135,7 @@
             </div>
           </div>
         </article><!-- eo #import -->
-        
+
         <!-- Reset -->
         <article id="meyer-reset">
           <h2>.meyer-reset</h2>
@@ -194,7 +194,7 @@
   /************************************
   * Border
   *
-  * @what?: Add a 1px solid border 
+  * @what?: Add a 1px solid border
   *        super quick.
   *
   * @params: colour         default = #000
@@ -204,7 +204,7 @@
             </div>
           </div>
         </article><!-- eo #border -->
-        
+
         <!-- Round all corners -->
         <article id="round-all-corners">
           <h2>.round-all-corners</h2>
@@ -235,7 +235,7 @@
                 <code>
   /************************************
   * Round all corners
-  * 
+  *
   * @what?: Rounds every corner equally
   *
   * @params: radius,      default = 5px
@@ -245,7 +245,7 @@
             </div>
           </div>
         </article><!-- eo #round-all-corners -->
-        
+
         <!-- Rounded Corners -->
         <article id="rounded-corners">
           <h2>.rounded-corners</h2>
@@ -333,7 +333,7 @@
             </div>
           </div>
         </article><!-- eo #transition -->
-        
+
         <!-- Drop shadow -->
         <article id="drop-shadow">
           <h2>.drop-shadow</h2>
@@ -379,7 +379,7 @@
             </div>
           </div>
         </article><!-- eo #drop-shadow -->
-        
+
         <!-- Inner shadow -->
         <article id="inner-shadow">
           <h2>.inner-shadow</h2>
@@ -410,7 +410,7 @@
                 <code>
   /************************************
   * Inner shadow
-  * 
+  *
   * @what: Adds an inner shadow to the
   *        html element.
   *
@@ -424,7 +424,7 @@
             </div>
           </div>
         </article><!-- eo #inner-shadow -->
-        
+
         <!-- Text shadow -->
         <article id="text-shadow">
           <h2>.text-shadow</h2>
@@ -468,7 +468,7 @@
             </div>
           </div>
         </article><!-- eo #text-shadow -->
-        
+
         <!-- Background gradient -->
         <article id="background-gradient">
           <h2>.background-gradient</h2>
@@ -499,10 +499,10 @@
                 <code>
   /************************************
   * Background Gradient
-  * 
+  *
   * @what?: Adds a background gradient to
   *         an HTML element
-  * 
+  *
   * @params: colourFrom,       default = #bbb
   *          colourTo,         default = #f1f1f1
   *          fallbackColour,   default = #f1f1f1
@@ -515,7 +515,7 @@
             </div>
           </div>
         </article><!-- eo #background-gradient -->
-        
+
         <!-- Title -->
         <article id="columns">
           <h2>.columns</h2>
@@ -600,7 +600,7 @@
             </div>
           </div>
         </article><!-- eo #scale -->
-        
+
         <!-- Scale X -->
         <article id="scale-x">
           <h2>.scaleX</h2>
@@ -632,7 +632,7 @@
   /************************************
   * ScaleX
   *
-  * @what?: Defines a scale transformation 
+  * @what?: Defines a scale transformation
   *         by giving a value for the X-axis
   *
   * @params: x,           default = 1
@@ -642,7 +642,7 @@
             </div>
           </div>
         </article><!-- eo #scale-x -->
-        
+
         <!-- Scale Y -->
         <article id="scale-y">
           <h2>.scaleY</h2>
@@ -674,7 +674,7 @@
   /************************************
   * ScaleY
   *
-  * @what?: Defines a scale transformation 
+  * @what?: Defines a scale transformation
   *         by giving a value for the Y-axis
   *
   * @params: y,           default = 1
@@ -684,7 +684,7 @@
             </div>
           </div>
         </article><!-- eo #scale-y -->
-        
+
         <!-- Rotate -->
         <article id="rotate">
           <h2>.rotate</h2>
@@ -716,7 +716,7 @@
   /************************************
   * Rotate
   *
-  * @what?: Defines a 2D rotation, the angle 
+  * @what?: Defines a 2D rotation, the angle
   *         is specified in the parameter
   *
   * @params: degrees,     default = 90deg
@@ -726,7 +726,7 @@
             </div>
           </div>
         </article><!-- eo #rotate -->
-        
+
         <!-- Rotate X -->
         <article id="rotate-x">
           <h2>.rotateX</h2>
@@ -767,7 +767,7 @@
             </div>
           </div>
         </article><!-- eo #rotate-x -->
-        
+
         <!-- Rotate Y -->
         <article id="rotate-y">
           <h2>.rotateY</h2>
@@ -808,7 +808,7 @@
             </div>
           </div>
         </article><!-- eo #rotate-y -->
-        
+
         <!-- Skew -->
         <article id="skew">
           <h2>.skew</h2>
@@ -840,7 +840,7 @@
   /************************************
   * Skew
   *
-  * @what?: Defines a 2D skew transformation 
+  * @what?: Defines a 2D skew transformation
   *         along the X- and the Y-axis
   *
   * @params: angleX,      default = 10deg
@@ -851,7 +851,7 @@
             </div>
           </div>
         </article><!-- eo #skew -->
-        
+
         <!-- Skew X -->
         <article id="skew-x">
           <h2>.skewX</h2>
@@ -883,7 +883,7 @@
   /************************************
   * SkewX
   *
-  * @what?: Defines a 2D skew transformation 
+  * @what?: Defines a 2D skew transformation
   *         along the X-axis
   *
   * @params: angleX,      default = 10deg
@@ -893,7 +893,7 @@
             </div>
           </div>
         </article><!-- eo #skew-x -->
-        
+
         <!-- Skew Y -->
         <article id="skew-y">
           <h2>.skewY</h2>
@@ -925,7 +925,7 @@
   /************************************
   * SkewY
   *
-  * @what?: Defines a 2D skew transformation 
+  * @what?: Defines a 2D skew transformation
   *         along the Y-axis
   *
   * @params: angleY,      default = 10deg
@@ -935,7 +935,7 @@
             </div>
           </div>
         </article><!-- eo #skew-y -->
-        
+
         <!-- Translate -->
         <article id="translate">
           <h2>.translate</h2>
@@ -977,7 +977,7 @@
             </div>
           </div>
         </article><!-- eo #translate -->
-        
+
         <!-- Translate X -->
         <article id="translate-x">
           <h2>.translateX</h2>
@@ -1009,7 +1009,7 @@
   /************************************
   * TranslateX
   *
-  * @what?: Defines a translation, using 
+  * @what?: Defines a translation, using
   *         only the value for the X-axis
   *
   * @params: x,           default = 10px
@@ -1052,7 +1052,7 @@
   /************************************
   * TranslateY
   *
-  * @what?: Defines a translation, using 
+  * @what?: Defines a translation, using
   *         only the value for the Y-axis
   *
   * @params: y,           default = 10px
@@ -1063,7 +1063,7 @@
             </div>
           </div>
         </article><!-- eo #translate-y -->
-        
+
         <!-- Matrix -->
         <article id="matrix">
           <h2>.matrix</h2>
@@ -1095,7 +1095,7 @@
   /************************************
   * Matrix
   *
-  * @what?: Defines a 2D transformation, 
+  * @what?: Defines a 2D transformation,
   *         using a matrix of six values
   *
   * @params: n1, default = 0
@@ -1109,7 +1109,7 @@
             </div>
           </div>
         </article><!-- eo #matrix -->
-        
+
       </section>
     </div>
     <footer>
@@ -1122,7 +1122,7 @@
 </html>
 
 
-<!-- Title 
+<!-- Title
 <article id="test">
   <h2>Title</h2>
   <div class="content">
@@ -1137,7 +1137,7 @@
       <h3>Code</h3>
       <pre class="prettyprint lang-css">
         <code>
-          
+
         </code>
       </pre>
     </div>
@@ -1145,7 +1145,7 @@
       <h3>Reference</h3>
       <pre class="prettyprint lang-css">
         <code>
-          
+
         </code>
       </pre>
     </div>
