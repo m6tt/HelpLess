@@ -1,0 +1,425 @@
+/* HelpLess
+*
+*  A full featured helper file for less declarations
+*
+*  @author: m6tt
+*  @date: 11/9/2011
+*  @contributors:
+*  -
+*
+*  @contents:
+*  - .meyer-reset
+*  - .clearfix
+*  - .border
+*  - .round-all-corners
+*  - .rounded-corners
+*  - .transition
+*  - .drop-shadow
+*  - .inner-shadow
+*  - .text-shadow
+*  - .background-gradient
+*  - .columns
+*  - .scale
+*  - .scale3d
+*  - .scaleX
+*  - .scaleY
+*  - .scaleZ
+*  - .rotate
+*  - .rotate3d
+*  - .rotateX
+*  - .rotateY
+*  - .rotateZ
+*  - .skew
+*  - .skewX
+*  - .skewY
+*  - .translate
+*  - .translate3d
+*  - .translateX
+*  - .translateY
+*  - .translateZ
+*  - .matrix
+*  - .matrix3d
+*
+*/
+
+#hl {
+  /************************************
+  * The one and only Meyer Reset
+  * http://meyerweb.com/eric/tools/css/reset/
+  ************************************/
+  .meyer-reset () {
+    /* http://meyerweb.com/eric/tools/css/reset/ v2.0 | 20110126 license: none (public domain) */
+    html, body, div, span, applet, object, iframe,
+    h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+    a, abbr, acronym, address, big, cite, code,
+    del, dfn, em, img, ins, kbd, q, s, samp,
+    small, strike, strong, sub, sup, tt, var,
+    b, u, i, center,
+    dl, dt, dd, ol, ul, li,
+    fieldset, form, label, legend,
+    table, caption, tbody, tfoot, thead, tr, th, td,
+    article, aside, canvas, details, embed,
+    figure, figcaption, footer, header, hgroup,
+    menu, nav, output, ruby, section, summary,
+    time, mark, audio, video { margin: 0; padding: 0; border: 0; font-size: 100%; font: inherit; vertical-align: baseline; }
+    /* HTML5 display-role reset for older browsers */
+    article, aside, details, figcaption, figure,
+    footer, header, hgroup, menu, nav, section { display: block; }
+    body { line-height: 1; }
+    ol, ul { list-style: none; }
+    blockquote, q { quotes: none; }
+    blockquote:before, blockquote:after, q:before, q:after { content: ''; content: none; }
+    table { border-collapse: collapse; border-spacing: 0; }
+  }
+
+  /************************************
+  * Clearfix
+  * @note: Do no place with the element itself
+  * @params: element - can be '.class-name' or '#id-name'
+  ************************************/
+//  .clearfix (@element) {
+//     ~"@element:before, @element:after { content: ''; display: table; }";
+//     ~"@element:after { clear: both; }";
+//     ~"@element { zoom: 1; }"
+//   }
+
+  /************************************
+  * Border
+  * @params: colour
+  ************************************/
+  .border (@colour: #000) {
+    border: 1px solid @colour;
+  }
+
+  /************************************
+  * Round all corners
+  * @params: radius
+  ************************************/
+  .round-all-corners (@radius: 5px) {
+    -webkit-border-radius: @radius;
+       -moz-border-radius: @radius;
+            border-radius: @radius;
+  }
+
+  /************************************
+  * Rounded corners
+  * @params: topLeft, topRight, bottomRight, bottomLeft
+  ************************************/
+  .rounded-corners (@topLeft: 5px, @topRight: 5px, @bottomRight: 5px, @bottomLeft: 5px) {
+    -moz-border-radius-topleft: @topLeft;
+    -moz-border-radius-topright: @topRight;
+    -moz-border-radius-bottomright: @bottomRight;
+    -moz-border-radius-bottomleft: @bottomLeft;
+    -webkit-border-radius: @topLeft @topRight @bottomRight @bottomLeft;
+    border-radius: @topLeft @topRight @bottomRight @bottomLeft;
+  }
+
+  /************************************
+  * Transition
+  * @params: property, duration, ease, delay
+  ************************************/
+  .transition (@property: all, @duration: .5s, @ease: linear, @delay: .0s) {
+    -webkit-transition: @arguments;
+       -moz-transition: @arguments;
+         -o-transition: @arguments;
+            transition: @arguments;
+  }
+
+  /************************************
+  * Drop shadow
+  * @params: x, y, blur, colour
+  ************************************/
+  .drop-shadow (@x: 0px, @y: 0px, @blur: 1px, @colour: rgba(0, 0, 0, .6)) {
+    -webkit-box-shadow: @arguments;
+       -moz-box-shadow: @arguments;
+            box-shadow: @arguments;
+  }
+
+  /************************************
+  * Inner shadow
+  * @params: x, y, blur, colour
+  ************************************/
+  .inner-shadow (@x: 0px, @y: 0px, @blur: 1px, @colour: rgba(0, 0, 0, .6)) {
+    -webkit-box-shadow: inset @arguments;
+       -moz-box-shadow: inset @arguments;
+            box-shadow: inset @arguments;
+  }
+
+  /************************************
+  * Text shadow
+  * @params: x, y, blur, colour
+  ************************************/
+  .text-shadow (@x: 1px, @y: 1px, @blur: 1px, @colour: rgba(0, 0, 0, .6)) {
+    text-shadow: @arguments;
+  }
+
+  /************************************
+  * Background Gradient
+  * @params: colourFrom, colourTo, fallbackColour, fallbackImageUrl
+  * @thanksBeTo: http://css-tricks.com/5700-css3-gradients/
+  ************************************/
+  .background-gradient (@colourfrom: #bbb, @colourTo: #f1f1f1, @fallbackColour: #f1f1f1, @fallbackImageUrl: '') {
+    background-color: @fallbackColour;
+    background-image: url("@fallbackImage");
+    background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from( @colourfrom), to(@colourTo));
+    background-image: -webkit-linear-gradient(top, @colourfrom, @colourTo);
+    background-image: -moz-linear-gradient(top, @colourfrom, @colourTo);
+    background-image: -ms-linear-gradient(top, @colourfrom, @colourTo);
+    background-image: -o-linear-gradient(top, @colourfrom, @colourTo);
+  }
+
+  /************************************
+  * Columns
+  * @params: count, gap
+  ************************************/
+  .columns (@count: 1, @gap: 10px) {
+    -moz-column-count: @count;
+    -moz-column-gap: @gap;
+    -webkit-column-count: @count;
+    -webkit-column-gap: @gap;
+    column-count: @count;
+    column-gap: @gap;
+  }
+
+  /************************************
+  * Scale
+  * @params: amount
+  ************************************/
+  .scale (@amount: 1) {
+    transform:scale(@amount);
+    -ms-transform:scale(@amount);
+    -moz-transform:scale(@amount);
+    -webkit-transform:scale(@amount);
+    -o-transform:scale(@amount);
+  }
+
+  /************************************
+  * Scale3d
+  * @params: x, y, z
+  ************************************/
+  .scale3d (@x: 1, @y: 1, @z: 1) {
+    transform:scale3d(@parameters);
+    -ms-transform:scale3d(@parameters);
+    -moz-transform:scale3d(@parameters);
+    -webkit-transform:scale3d(@parameters);
+    -o-transform:scale3d(@parameters);
+  }
+
+  /************************************
+  * ScaleX
+  * @params: x
+  ************************************/
+  .scaleX (@x: 1) {
+    transform:scaleX(@x);
+    -ms-transform:scaleX(@x);
+    -moz-transform:scaleX(@x);
+    -webkit-transform:scaleX(@x);
+    -o-transform:scaleX(@x);
+  }
+
+  /************************************
+  * ScaleY
+  * @params: y
+  ************************************/
+  .scaleY (@y: 1) {
+    transform:scaleY(@y);
+    -ms-transform:scaleY(@y);
+    -moz-transform:scaleY(@y);
+    -webkit-transform:scaleY(@y);
+    -o-transform:scaleY(@y);
+  }
+
+  /************************************
+  * ScaleZ
+  * @params: z
+  ************************************/
+  .scaleZ (@z: 1) {
+    transform:scaleZ(@z);
+    -ms-transform:scaleZ(@z);
+    -moz-transform:scaleZ(@z);
+    -webkit-transform:scaleZ(@z);
+    -o-transform:scaleZ(@z);
+  }
+
+  /************************************
+  * Rotate
+  * @params: degrees
+  ************************************/
+  .rotate (@degrees: 0deg) {
+    transform:rotate(@degrees);
+    -ms-transform:rotate(@degrees);
+    -moz-transform:rotate(@degrees);
+    -webkit-transform:rotate(@degrees);
+    -o-transform:rotate(@degrees);
+  }
+
+  /************************************
+  * Rotate3d
+  * @params: x, y, z, degrees
+  ************************************/
+  .rotate3d (@x: 0, @y: 0, @z: 0, @degrees: 0deg) {
+    transform:rotate3d(@parameters);
+    -ms-transform:rotate3d(@parameters);
+    -moz-transform:rotate3d(@parameters);
+    -webkit-transform:rotate3d(@parameters);
+    -o-transform:rotate3d(@parameters);
+  }
+
+  /************************************
+  * RotateX
+  * @params: degrees
+  ************************************/
+  .rotateX (@degrees: 0deg) {
+    transform:rotateX(@degrees);
+    -ms-transform:rotateX(@degrees);
+    -moz-transform:rotateX(@degrees);
+    -webkit-transform:rotateX(@degrees);
+    -o-transform:rotateX(@degrees);
+  }
+
+  /************************************
+  * RotateY
+  * @params: degrees
+  ************************************/
+  .rotateY (@degrees: 0deg) {
+    transform:rotateY(@degrees);
+    -ms-transform:rotateY(@degrees);
+    -moz-transform:rotateY(@degrees);
+    -webkit-transform:rotateY(@degrees);
+    -o-transform:rotateY(@degrees);
+  }
+
+  /************************************
+  * RotateZ
+  * @params: degrees
+  ************************************/
+  .rotateZ (@degrees: 0deg) {
+    transform:rotateZ(@degrees);
+    -ms-transform:rotateZ(@degrees);
+    -moz-transform:rotateZ(@degrees);
+    -webkit-transform:rotateZ(@degrees);
+    -o-transform:rotateZ(@degrees);
+  }
+
+  /************************************
+  * Skew
+  * @params: angleX, angleY
+  ************************************/
+  .skew (@angleX: 10deg, @angleY: 10deg) {
+    transform:skew(@angleX, @angleY);
+    -ms-transform:skew(@angleX, @angleY);
+    -moz-transform:skew(@angleX, @angleY);
+    -webkit-transform:skew(@angleX, @angleY);
+    -o-transform:skew(@angleX, @angleY);
+  }
+
+  /************************************
+  * SkewX
+  * @params: angle
+  ************************************/
+  .skewX (@angle: 10deg) {
+    transform:skewX(@angle);
+    -ms-transform:skewX(@angle);
+    -moz-transform:skewX(@angle);
+    -webkit-transform:skewX(@angle);
+    -o-transform:skewX(@angle);
+  }
+
+  /************************************
+  * SkewY
+  * @params: angle
+  ************************************/
+  .skewY (@angle: 10deg) {
+    transform:skewY(@angle);
+    -ms-transform:skewY(@angle);
+    -moz-transform:skewY(@angle);
+    -webkit-transform:skewY(@angle);
+    -o-transform:skewY(@angle);
+  }
+
+  /************************************
+  * Translate
+  * @params: x, y
+  ************************************/
+  .translate (@x: 0px, @y: 0px) {
+    transform:translate(@x, @y);
+    -ms-transform:translate(@x, @y);
+    -moz-transform:translate(@x, @y);
+    -webkit-transform:translate(@x, @y);
+    -o-transform:translate(@x, @y);
+  }
+
+  /************************************
+  * Translate3d
+  * @params: x, y, z
+  ************************************/
+  .translate3d (@x: 0px, @y: 0px, @z: 0px) {
+    transform:translate3d(@parameters);
+    -ms-transform:translate3d(@parameters);
+    -moz-transform:translate3d(@parameters);
+    -webkit-transform:translate3d(@parameters);
+    -o-transform:translate3d(@parameters);
+  }
+
+  /************************************
+  * TranslateX
+  * @params: x
+  ************************************/
+  .translateX (@x: 0px) {
+    transform:translateX(@x);
+    -ms-transform:translateX(@x);
+    -moz-transform:translateX(@x);
+    -webkit-transform:translateX(@x);
+    -o-transform:translateX(@x);
+  }
+
+  /************************************
+  * TranslateY
+  * @params: y
+  ************************************/
+  .translateY (@y: 0px) {
+    transform:translateY(@y);
+    -ms-transform:translateY(@y);
+    -moz-transform:translateY(@y);
+    -webkit-transform:translateY(@y);
+    -o-transform:translateY(@y);
+  }
+
+  /************************************
+  * TranslateZ
+  * @params: z
+  ************************************/
+  .translateZ (@z: 0px) {
+    transform:translateZ(@z);
+    -ms-transform:translateZ(@z);
+    -moz-transform:translateZ(@z);
+    -webkit-transform:translateZ(@z);
+    -o-transform:translateZ(@z);
+  }
+
+  /************************************
+  * matrix
+  * @params: n1, n2, n3, n4, n5, n6
+  ************************************/
+  .matrix (@n1: 0, @n2: 0, @n3: 0, @n4: 0, @n5: 0, @n6: 0) {
+    transform:matrix(@n1, @n2, @n3, @n4, @n5, @n6);
+    -ms-transform:matrix(@n1, @n2, @n3, @n4, @n5, @n6);
+    -moz-transform:matrix(@n1, @n2, @n3, @n4, @n5, @n6);
+    -webkit-transform:matrix(@n1, @n2, @n3, @n4, @n5, @n6);
+    -o-transform:matrix(@n1, @n2, @n3, @n4, @n5, @n6);
+  }
+
+  /************************************
+  * matrix3d
+  * @params: n1, n2, n3, n4, n5, n6, n7, n8,
+             n9, n10, n11, n12, n13, n14, n15, n16
+  ************************************/
+  .matrix3d (@n1: 0, @n2: 0, @n3: 0, @n4: 0, @n5: 0, @n6: 0, @n7: 0, @n8: 0,
+             @n9: 0, @n10: 0, @n11: 0, @n12: 0, @n13: 0, @n14: 0, @n15: 0, @n15: 0) {
+    transform:matrix3d(@parameters);
+    -ms-transform:matrix3d(@parameters);
+    -moz-transform:matrix3d(@parameters);
+    -webkit-transform:matrix3d(@parameters);
+    -o-transform:matrix3d(@parameters);
+  }
+}

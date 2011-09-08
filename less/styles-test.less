@@ -1,0 +1,241 @@
+@import "libs/helpless.less";
+
+#hl .meyer-reset();
+
+body {
+  font-family: 'Ubuntu', helvetica, arial, sans-serif;
+  #hl.text-shadow(0px, 1px, 1px, rgba(255, 255, 255, 0.5));
+  padding: 10px;
+  background-color: #f9f9f9;
+}
+
+#container {
+  background-color: #fff;
+  width: 80%;
+  max-width: 500px;
+  padding: 20px 20px 0px 20px;
+  margin: 10px auto;
+  font-size: 85%;
+  #hl.round-all-corners(50px);
+}
+header {
+  text-align: center;
+}
+  header img {
+
+  }
+  header h1 {
+    color: #555;
+    letter-spacing: -0.03em;
+    font-size: 2.0em;
+    font-style: italic;
+    font-weight: bold;
+    padding: 10px 0px 10px 0px;
+  }
+
+
+#main article:first-child {
+  border-top: 1px solid #e1e1e1;
+}
+#main article {
+  padding: 0px 0;
+  border-bottom: 1px solid #e1e1e1;
+}
+  #main article h2 {
+    padding: 10px 0px;
+    font-weight: bold;
+    font-weight: normal;
+  }
+    #main article h2 span.toggle {
+      width: 21px;
+      height: 13px;
+      display: block;
+      float: right;
+      background: url('../img/slide-toggle.png') no-repeat 0px right;
+    }
+    #main article h2 span.toggle.over {
+      background-position: -15px right;
+    }
+    #main article h2 span.toggle.active {
+      background-position: -30px right;
+    }
+    #main article h2 span.toggle.active.over {
+      background-position: -45px right;
+    }
+  .jquery #main article h2 {
+    cursor: pointer;
+  }
+  #main article .example {
+    margin: 10px;
+    padding: 10px;
+    width: 300px;
+  }
+  #main article pre {
+    border: none;
+    font-family: monaco, sans-serif;
+    line-height: 1.5em;
+  }
+
+footer {
+  padding: 10px 0 0 0;
+  text-align: center;
+}
+  footer p {
+    padding: 10px 0;
+    font-size: 0.8em;
+    font-family: arial;
+  }
+  footer p.copy {
+    color: #aaa;
+    margin-top: 10px;
+    border-top: 1px dotted #e1e1e1;
+  }
+
+.standard-box() {
+  background-color: #bbcc00;
+  height: 100px;
+  #hl.round-all-corners(4px);
+}
+
+/* .border */
+#border .example {
+  #hl.border(#bbcc00);
+}
+
+/* .round-all-corners */
+#round-all-corners .example {
+  background-color: #bbcc00;
+  #hl.round-all-corners(10px);
+}
+
+/* .rounded-corners */
+#rounded-corners .example {
+  background-color: #bbcc00;
+  height: 100px;
+  #hl.rounded-corners(10px, 20px, 30px, 40px);
+}
+
+/* .transition */
+#transition .example {
+  color: #fff;
+  background-color: #555;
+  height: 100px;
+  #hl.round-all-corners(4px);
+  #hl.transition(all, 0.3s, ease-in-out);
+}
+  #transition .example:hover {
+    background-color: #004477;
+    margin-left: 30px;
+  }
+
+/* .drop-shadow */
+#drop-shadow .example {
+  .standard-box();
+  #hl.drop-shadow(0px, 2px, 3px, rgba(0, 0, 0, 0.4));
+}
+
+/* .inner-shadow */
+#inner-shadow .example {
+  .standard-box();
+  #hl.inner-shadow(0px, 2px, 3px, rgba(0, 0, 0, 0.4));
+}
+
+/* .text-shadow */
+#text-shadow .example {
+  background-color: #888;
+  height: 100px;
+  #hl.round-all-corners(4px);
+  #hl.text-shadow(0px, 1px, 1px, rgba(255, 255, 255, 0.8));
+}
+
+/* .background-gradient */
+#background-gradient .example {
+  color: #fff;
+  .standard-box();
+  #hl.background-gradient(#23608f, #00c5e2, #23608f);
+}
+
+/* .columns */
+#columns .example {
+  color: #444;
+  background-color: #f1f1f1;
+  #hl.round-all-corners(4px);
+  #hl.columns(2, 20px);
+}
+
+/* .scale */
+#scale .example {
+  .standard-box();
+}
+
+#scale .example p {
+  #hl.scale(2);
+}
+
+/* .scaleX */
+#scale-x .example {
+  .standard-box();
+}
+
+#scale-x .example p {
+  #hl.scaleX(2);
+}
+
+/* .scaleY */
+#scale-y .example {
+  .standard-box();
+}
+
+#scale-y .example p {
+  #hl.scaleY(2);
+}
+
+/* .rotate */
+#rotate .example {
+  .standard-box();
+  #hl.rotate(-10deg);
+}
+
+/* .skew */
+#skew .example {
+  .standard-box();
+  #hl.skew(10deg, 10deg);
+}
+
+/* .skewX */
+#skew-x .example {
+  .standard-box();
+  #hl.skewX(-10deg);
+}
+
+/* .skewY */
+#skew-y .example {
+  .standard-box();
+  #hl.skewY(-10deg);
+}
+
+/* .translate */
+#translate .example {
+  .standard-box();
+  #hl.translate(30px, 10px);
+}
+
+/* .translateX */
+#translate-x .example {
+  .standard-box();
+  #hl.translateX(30px);
+}
+
+/* .translateY */
+#translate-y .example {
+  .standard-box();
+  #hl.translateY(10px);
+}
+
+/* .matrix */
+#matrix .example {
+  .standard-box();
+  #hl.matrix(0.586, 0.3, -0.6, 0.586, 40, 20);
+}
+
+
