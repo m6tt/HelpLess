@@ -3,8 +3,12 @@
 <head>
   <meta charset="utf-8">
   <title>HelpLess | Less helpers</title>
+  
+  <link rel="shortcut icon" href="favicon.ico">
 
-  <link href='http://fonts.googleapis.com/css?family=Ubuntu:400,700,700italic' rel='stylesheet' type='text/css'>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+
+  <link href='http://fonts.googleapis.com/css?family=Lobster+Two:400italic,700italic' rel='stylesheet' type='text/css'>
   <link rel="stylesheet/less" type="text/css" href="less/styles-test.less">
   <script src="js/less-1.1.3.min.js"></script>
 
@@ -15,34 +19,82 @@
   <script>
     jQuery(function() {
       $(document).ready(function() {
-
-        $('html').addClass('jquery');
-        prettyPrint();
-
+        
+        var scrollToTop;
+        
+        function init()
+        {
+          $('html').addClass('jquery');
+          prettyPrint();
+          insertScrollToTop();
+        }
+        
+        function insertScrollToTop()
+        {
+          scrollToTop = $('<div id="scroll-to-top"><p>Top</p></div>');
+          $('body').append(scrollToTop);
+          scrollToTop.click(function()
+          {
+            $('html, body').animate({scrollTop:0}, 'slow');
+          });
+        }
+        
+        $(window).scroll(function(e)
+        {
+          var scrollTop = $(window).scrollTop();
+          if(scrollTop > 400)
+          {
+            if(!scrollToTop.hasClass('showing'))
+            {
+              scrollToTop.fadeIn().addClass('showing');
+            }
+          }
+          else
+          {
+            if(scrollToTop.hasClass('showing'))
+            {
+              scrollToTop.fadeOut().removeClass('showing');
+            }
+          }
+        });
+        
         $('article .content').each(function() {
           $(this).hide();
           $(this).parent().children('h2').append('<span class="toggle"></span>');
         });
-
-
-
+        
         $('article h2').click(function()
         {
-          if(!$(this).parent().hasClass('active'))
+          var article = $(this).parent();
+          if(!article.hasClass('active'))
           {
-            $('article.active .content').slideUp();
+            if($('article.active').length > 0)
+            {
+              $('article.active .content').slideUp(function()
+              {
+                $('html, body').animate({scrollTop:article.offset().top-15}, 'slow');
+              });
+            }
+            else
+            {
+              $('article.active .content').slideUp();
+              $('html, body').animate({scrollTop:article.offset().top-15}, 'slow');
+            }
             $('article.active').removeClass('active');
             $(this).next().slideDown();
-            $(this).parent().addClass('active');
+            article.addClass('active');
             $(this).children('span.toggle').addClass('active');
+            
           }
           else
           {
             $(this).next().slideUp();
-            $(this).parent().removeClass('active');
+            article.removeClass('active');
           }
         });
-
+        
+        init();
+        
       });
     });
   </script>
@@ -51,321 +103,1014 @@
 <body>
   <div id="container">
     <header>
-      <img src="img/logo.png" alt="Logo" />
-      <h1>HelpLess</h1>
+      <a href=""><img src="img/logo.png" alt="Logo" /></a>
+      <a href=""><h1>HelpLess</h1></a>
+      <button type="button" class="download">Download now<span class="download-icon"></span></button>
       <a href="http://github.com/you"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://a248.e.akamai.net/assets.github.com/img/e6bef7a091f5f3138b8cd40bc3e114258dd68ddf/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork me on GitHub"></a>
     </header>
 
     <div id="main" role="main">
-      <article id="meyer-reset">
-        <h2>.meyer-reset</h2>
-        <div class="content">
-          <pre class="prettyprint linenums lang-css">
-            #lh.meyer-reset();
-          </pre>
-        </div>
-      </article>
-
-      <article id="border">
-        <h2>.border</h2>
-        <div class="content">
-          <div class="example">
-            <p>Lorem ipsum delorean mcfly&hellip;</p>
+      
+      <section id="intro">
+        <p>HelpLess is a Helper Library for the increasingly popular LESS dynamic stylesheet language. Read more about LESS <a href="http://lesscss.org/">here</a>.</p>
+        <p>Simply import helpless.less and let it make your life easier.</p>
+      </section>
+      
+      <section>
+        
+        <!-- Import -->
+        <article id="import">
+          <h2>How to import</h2>
+          <div class="content">
+            <div class="description">
+              <h3>: Description</h3>
+              <p>Importing HelpLess into your LESS file is easy.</p>
+            </div>
+            <div class="code">
+              <h3>Code</h3>
+              <pre class="prettyprint lang-css">
+                <code>
+  @import "libs/helpless.less";</code>
+              </pre>
+            </div>
           </div>
-          <pre class="prettyprint linenums lang-css">
-            .element {
-              #lh.border(#bbcc00);
-            }
-          </pre>
-        </div>
-      </article>
-
-      <article id="round-all-corners">
-        <h2>.round-all-corners</h2>
-        <div class="content">
-          <div class="example">
-            <p>Lorem ipsum delorean mcfly&hellip;</p>
+        </article><!-- eo #import -->
+        
+        <!-- Reset -->
+        <article id="meyer-reset">
+          <h2>.meyer-reset</h2>
+          <div class="content">
+            <div class="description">
+              <h3>: Description</h3>
+              <p>The one and only Meyer Reset. see <a href="http://meyerweb.com/eric/tools/css/reset/">http://meyerweb.com/eric/tools/css/reset/</a> for more information.</p>
+            </divclass>
+            <div class="code">
+              <h3>: Code</h3>
+              <pre class="prettyprint lang-css">
+                <code>
+  #hl.meyer-reset();</code>
+              </pre>
+            </div>
+            <div class="ref">
+              <h3>: Reference</h3>
+              <pre class="prettyprint lang-css">
+                <code>
+  /************************************
+  * The one and only Meyer Reset
+  * http://meyerweb.com/eric/tools/css/reset/
+  ************************************/</code>
+              </pre>
+            </div>
           </div>
-          <pre class="prettyprint linenums lang-css">
-            .element {
-              ...
-              #lh.round-all-corners(10px);
-            }
-          </pre>
-        </div>
-      </article>
+        </article><!-- eo #meyer-reset -->
 
-      <article id="rounded-corners">
-        <h2>.rounded-corners</h2>
-        <div class="content">
-          <div class="example">
-            <p>Lorem ipsum delorean mcfly&hellip;</p>
+        <!-- Border -->
+        <article id="border">
+          <h2>.border</h2>
+          <div class="content">
+            <div class="description">
+              <h3>: Description</h3>
+              <p>Add a 1px solid border super quick.</p>
+            </div>
+            <div class="example">
+              <h3>Example</h3>
+              <div>
+                <p>Lorem ipsum delorean mcfly&hellip;</p>
+              </div>
+            </div>
+            <div class="code">
+              <h3>Code</h3>
+              <pre class="prettyprint lang-css">
+                <code>
+  .element {
+    #hl.border(#bbcc00);
+  }</code>
+              </pre>
+            </div>
+            <div class="ref">
+              <h3>Reference</h3>
+              <pre class="prettyprint lang-css">
+                <code>
+  /************************************
+  * Border
+  *
+  * @what?: Add a 1px solid border 
+  *        super quick.
+  *
+  * @params: colour         default = #000
+  *
+  ************************************/</code>
+              </pre>
+            </div>
           </div>
-          <pre class="prettyprint linenums lang-css">
-            .element {
-              ...
-              #lh.rounded-corners(10px, 20px, 30px, 40px);
-            }
-          </pre>
-        </div>
-      </article>
-
-      <article id="transition">
-        <h2>.transition</h2>
-        <div class="content">
-          <div class="example">
-            <p>Hover over me to see me change!</p>
+        </article><!-- eo #border -->
+        
+        <!-- Round all corners -->
+        <article id="round-all-corners">
+          <h2>.round-all-corners</h2>
+          <div class="content">
+            <div class="description">
+              <h3>: Description</h3>
+              <p>Rounds every corner equally</p>
+            </div>
+            <div class="example">
+              <h3>Example</h3>
+              <div>
+                <p>Lorem ipsum delorean mcfly&hellip;</p>
+              </div>
+            </div>
+            <div class="code">
+              <h3>Code</h3>
+              <pre class="prettyprint lang-css">
+                <code>
+  .element {
+    ...
+    #hl.round-all-corners(10px);
+  }</code>
+              </pre>
+            </div>
+            <div class="ref">
+              <h3>Reference</h3>
+              <pre class="prettyprint lang-css">
+                <code>
+  /************************************
+  * Round all corners
+  * 
+  * @what?: Rounds every corner equally
+  *
+  * @params: radius,      default = 5px
+  *
+  ************************************/</code>
+              </pre>
+            </div>
           </div>
-          <pre class="prettyprint linenums lang-css">
-            .element {
-              ...
-              #lh.transition(background-color, 0.6s, ease-in-out);
-            }
-          </pre>
-        </div>
-      </article>
-
-      <article id="drop-shadow">
-        <h2>.drop-shadow</h2>
-        <div class="content">
-          <div class="example">
-            <p>Lorem ipsum delorean mcfly&hellip;</p>
+        </article><!-- eo #round-all-corners -->
+        
+        <!-- Rounded Corners -->
+        <article id="rounded-corners">
+          <h2>.rounded-corners</h2>
+          <div class="content">
+            <div class="description">
+              <h3>: Description</h3>
+              <p>Round each corner individually</p>
+            </div>
+            <div class="example">
+              <h3>Example</h3>
+              <div>
+                <p>Lorem ipsum delorean mcfly&hellip;</p>
+              </div>
+            </div>
+            <div class="code">
+              <h3>Code</h3>
+              <pre class="prettyprint lang-css">
+                <code>
+  .element {
+    ...
+    #hl.rounded-corners(10px, 20px, 30px, 40px);
+  }</code>
+              </pre>
+            </div>
+            <div class="ref">
+              <h3>Reference</h3>
+              <pre class="prettyprint lang-css">
+                <code>
+  /************************************
+  * Rounded corners
+  *
+  * @what?: Round each corner individually
+  *
+  * @params: topLeft,     default = 5px
+  *          topRight,    default = 5px
+  *          bottomRight, default = 5px
+  *          bottomLeft,  default = 5px
+  *
+  ************************************/</code>
+              </pre>
+            </div>
           </div>
-          <pre class="prettyprint linenums lang-css">
-            .element {
-              ...
-              #lh.drop-shadow(0px, 2px, 3px, rgba(0, 0, 0, 0.4));
-            }
-          </pre>
-        </div>
-      </article>
+        </article><!-- eo #rounded-corners -->
 
-      <article id="inner-shadow">
-        <h2>.inner-shadow</h2>
-        <div class="content">
-          <div class="example">
-            <p>Lorem ipsum delorean mcfly&hellip;</p>
+        <!-- Transition -->
+        <article id="transition">
+          <h2>.transition</h2>
+          <div class="content">
+            <div class="description">
+              <h3>: Description</h3>
+              <p>Defines a CSS3 transition</p>
+            </div>
+            <div class="example">
+              <h3>Example</h3>
+              <div>
+                <p>Hover over me to see me change!</p>
+              </div>
+            </div>
+            <div class="code">
+              <h3>Code</h3>
+              <pre class="prettyprint lang-css">
+                <code>
+  .element {
+    ...
+    #hl.transition(background-color, 0.6s, ease-in-out);
+  }</code>
+              </pre>
+            </div>
+            <div class="ref">
+              <h3>Reference</h3>
+              <pre class="prettyprint lang-css">
+                <code>
+  /************************************
+  * Transition
+  *
+  * @what?: Defines a CSS3 transition
+  *
+  * @params: property,    default = all
+  *          duration,    default = .5s
+  *          ease,        default = linear
+  *          delay,       default = .0s
+  *
+  ************************************/</code>
+              </pre>
+            </div>
           </div>
-          <pre class="prettyprint linenums lang-css">
-            .element {
-              ...
-              #lh.inner-shadow(0px, 2px, 3px, rgba(0, 0, 0, 0.4));
-            }
-          </pre>
-        </div>
-      </article>
-
-      <article id="text-shadow">
-        <h2>.text-shadow</h2>
-        <div class="content">
-          <div class="example">
-            <p>Lorem ipsum delorean mcfly&hellip;</p>
+        </article><!-- eo #transition -->
+        
+        <!-- Drop shadow -->
+        <article id="drop-shadow">
+          <h2>.drop-shadow</h2>
+          <div class="content">
+            <div class="description">
+              <h3>: Description</h3>
+              <p>Adds an outer shadow to the html element.<br />To add a shadow to text use .text-shadow(...)</p>
+            </div>
+            <div class="example">
+              <h3>Example</h3>
+              <div>
+                <p>Lorem ipsum delorean mcfly&hellip;</p>
+              </div>
+            </div>
+            <div class="code">
+              <h3>Code</h3>
+              <pre class="prettyprint lang-css">
+                <code>
+  .element {
+    ...
+    #hl.drop-shadow(0px, 2px, 3px, rgba(0, 0, 0, 0.4));
+  }</code>
+              </pre>
+            </div>
+            <div class="ref">
+              <h3>Reference</h3>
+              <pre class="prettyprint lang-css">
+                <code>
+  /************************************
+  * Drop shadow
+  *
+  * @what?: Adds an outer shadow to the
+  *         html element. To add a shadow
+  *         to text use #hl.text-shadow(...)
+  *
+  * @params: x,           default = 0px
+  *          y,           default = 1px
+  *          blur,        default = 1px
+  *          colour,      default = rgba(0, 0, 0, .6)
+  *
+  ************************************/</code>
+              </pre>
+            </div>
           </div>
-          <pre class="prettyprint linenums lang-css">
-            .element {
-              ...
-              #lh.text-shadow(0px, 1px, 1px, rgba(255, 255, 255, 0.8));
-            }
-          </pre>
-        </div>
-      </article>
-
-      <article id="background-gradient">
-        <h2>.background-gradient</h2>
-        <div class="content">
-          <div class="example">
-            <p>Lorem ipsum delorean mcfly&hellip;</p>
+        </article><!-- eo #drop-shadow -->
+        
+        <!-- Inner shadow -->
+        <article id="inner-shadow">
+          <h2>.inner-shadow</h2>
+          <div class="content">
+            <div class="description">
+              <h3>: Description</h3>
+              <p>Adds an inner shadow to the html element.</p>
+            </div>
+            <div class="example">
+              <h3>Example</h3>
+              <div>
+                <p>Lorem ipsum delorean mcfly&hellip;</p>
+              </div>
+            </div>
+            <div class="code">
+              <h3>Code</h3>
+              <pre class="prettyprint lang-css">
+                <code>
+  .element {
+    ...
+    #hl.inner-shadow(0px, 2px, 3px, rgba(0, 0, 0, 0.4));
+  }</code>
+              </pre>
+            </div>
+            <div class="ref">
+              <h3>Reference</h3>
+              <pre class="prettyprint lang-css">
+                <code>
+  /************************************
+  * Inner shadow
+  * 
+  * @what: Adds an inner shadow to the
+  *        html element.
+  *
+  * @params: x,           default = 0px
+  *          y,           default = 1px
+  *          blur,        default = 1px
+  *          colour,      default = rgba(0, 0, 0, .6)
+  *
+  ************************************/</code>
+              </pre>
+            </div>
           </div>
-          <pre class="prettyprint linenums lang-css">
-            .element {
-              ...
-              #lh.background-gradient(#23608f, #00c5e2, #23608f);
-            }
-          </pre>
-        </div>
-      </article>
-
-      <article id="columns">
-        <h2>.columns</h2>
-        <div class="content">
-          <div class="example">
-            <p>Ut dis pulvinar rhoncus, risus montes integer enim arcu purus turpis nisi. Ac mauris, eu scelerisque odio adipiscing, phasellus etiam vel sit.</p>
-            <p>dignissim augue? Nunc aenean, cras nec, non nisi a nisi, montes elit eros ac, mus dis pellentesque dis, ridiculus dictumst lundium augue purus et, amet sit phasellus ac aenean lorem cum diam! Nec et hac mattis placerat, auctor.</p>
+        </article><!-- eo #inner-shadow -->
+        
+        <!-- Text shadow -->
+        <article id="text-shadow">
+          <h2>.text-shadow</h2>
+          <div class="content">
+            <div class="description">
+              <h3>: Description</h3>
+              <p>Adds an outer shadow to text</p>
+            </div>
+            <div class="example">
+              <h3>Example</h3>
+              <div>
+                <p>Lorem ipsum delorean mcfly&hellip;</p>
+              </div>
+            </div>
+            <div class="code">
+              <h3>Code</h3>
+              <pre class="prettyprint lang-css">
+                <code>
+  .element {
+    ...
+    #hl.text-shadow(0px, 1px, 1px, rgba(255, 255, 255, 0.8));
+  }</code>
+              </pre>
+            </div>
+            <div class="ref">
+              <h3>Reference</h3>
+              <pre class="prettyprint lang-css">
+                <code>
+  /************************************
+  * Text shadow
+  *
+  * @what?: Adds an outer shadow to text
+  *
+  * @params: x,           default = 1px
+  *          y,           default = 1px
+  *          blur,        default = 1px
+  *          colour,      default = rgba(0, 0, 0, .6)
+  *
+  ************************************/</code>
+              </pre>
+            </div>
           </div>
-          <pre class="prettyprint linenums lang-css">
-            .element {
-              ...
-              #lh.columns(2, 20px);
-            }
-          </pre>
-        </div>
-      </article>
-
-      <article id="scale">
-        <h2>.scale</h2>
-        <div class="content">
-          <div class="example">
-            <p>Lorem ipsum delorean mcfly&hellip;</p>
+        </article><!-- eo #text-shadow -->
+        
+        <!-- Background gradient -->
+        <article id="background-gradient">
+          <h2>.background-gradient</h2>
+          <div class="content">
+            <div class="description">
+              <h3>: Description</h3>
+              <p>Adds a background gradient to an HTML element</p>
+            </div>
+            <div class="example">
+              <h3>Example</h3>
+              <div>
+                <p>Lorem ipsum delorean mcfly&hellip;</p>
+              </div>
+            </div>
+            <div class="code">
+              <h3>Code</h3>
+              <pre class="prettyprint lang-css">
+                <code>
+  .element {
+    ...
+    #hl.background-gradient(#23608f, #00c5e2, #23608f);
+  }</code>
+              </pre>
+            </div>
+            <div class="ref">
+              <h3>Reference</h3>
+              <pre class="prettyprint lang-css">
+                <code>
+  /************************************
+  * Background Gradient
+  * 
+  * @what?: Adds a background gradient to
+  *         an HTML element
+  * 
+  * @params: colourFrom,       default = #bbb
+  *          colourTo,         default = #f1f1f1
+  *          fallbackColour,   default = #f1f1f1
+  *          fallbackImageUrl, default = ''
+  *
+  * @thanksBeTo: http://css-tricks.com/5700-css3-gradients/
+  *
+  ************************************/</code>
+              </pre>
+            </div>
           </div>
-          <pre class="prettyprint linenums lang-css">
-            .element p {
-              ...
-              #lh.scale(2);
-            }
-          </pre>
-        </div>
-      </article>
-
-      <article id="scale-x">
-        <h2>.scaleX</h2>
-        <div class="content">
-          <div class="example">
-            <p>Lorem ipsum delorean mcfly&hellip;</p>
+        </article><!-- eo #background-gradient -->
+        
+        <!-- Title -->
+        <article id="columns">
+          <h2>.columns</h2>
+          <div class="content">
+            <div class="description">
+              <h3>: Description</h3>
+              <p>Sets CSS3 columns within blocks of html text</p>
+            </div>
+            <div class="example">
+              <h3>Example</h3>
+              <div>
+                <p>Ut dis pulvinar rhoncus, risus montes integer enim arcu purus turpis nisi. Ac mauris, eu scelerisque odio adipiscing, phasellus etiam vel sit.</p>
+                <p>dignissim augue? Nunc aenean, cras nec, non nisi a nisi, montes elit eros ac, mus dis pellentesque dis, ridiculus dictumst lundium augue purus et, amet sit phasellus ac aenean lorem cum diam! Nec et hac mattis placerat, auctor.</p>
+              </div>
+            </div>
+            <div class="code">
+              <h3>Code</h3>
+              <pre class="prettyprint lang-css">
+                <code>
+  .element {
+    ...
+    #hl.columns(2, 20px);
+  }</code>
+              </pre>
+            </div>
+            <div class="ref">
+              <h3>Reference</h3>
+              <pre class="prettyprint lang-css">
+                <code>
+  /************************************
+  * Columns
+  *
+  * @what?: Sets CSS3 columns within
+  *         blocks of html text
+  *
+  * @params: count,       default = 1
+  *          gap,         default = 10px
+  *
+  ************************************/</code>
+              </pre>
+            </div>
           </div>
-          <pre class="prettyprint linenums lang-css">
-            .element p {
-              ...
-              #lh.scaleX(2);
-            }
-          </pre>
-        </div>
-      </article>
+        </article><!-- eo #columns -->
 
-      <article id="scale-y">
-        <h2>.scaleY</h2>
-        <div class="content">
-          <div class="example">
-            <p>Lorem ipsum delorean mcfly&hellip;</p>
+        <!-- Scale -->
+        <article id="scale">
+          <h2>.scale</h2>
+          <div class="content">
+            <div class="description">
+              <h3>: Description</h3>
+              <p>Scale the element on both the X and Y axis</p>
+            </div>
+            <div class="example">
+              <h3>Example</h3>
+              <div>
+                <p>Lorem ipsum delorean mcfly&hellip;</p>
+              </div>
+            </div>
+            <div class="code">
+              <h3>Code</h3>
+              <pre class="prettyprint lang-css">
+                <code>
+  .element p {
+    ...
+    #hl.scale(2);
+  }</code>
+              </pre>
+            </div>
+            <div class="ref">
+              <h3>Reference</h3>
+              <pre class="prettyprint lang-css">
+                <code>
+  /************************************
+  * Scale
+  *
+  * @what?: Defines a 2D scale transformation
+  *
+  * @params: amount,      default = 1
+  *
+  ************************************/</code>
+              </pre>
+            </div>
           </div>
-          <pre class="prettyprint linenums lang-css">
-            .element p {
-              ...
-              #lh.scaleY(2);
-            }
-          </pre>
-        </div>
-      </article>
-
-      <article id="rotate">
-        <h2>.rotate</h2>
-        <div class="content">
-          <div class="example">
-            <p>Lorem ipsum delorean mcfly&hellip;</p>
+        </article><!-- eo #scale -->
+        
+        <!-- Scale X -->
+        <article id="scale-x">
+          <h2>.scaleX</h2>
+          <div class="content">
+            <div class="description">
+              <h3>: Description</h3>
+              <p>Scale the element on just the X axis</p>
+            </div>
+            <div class="example">
+              <h3>Example</h3>
+              <div>
+                <p>Lorem ipsum delorean mcfly&hellip;</p>
+              </div>
+            </div>
+            <div class="code">
+              <h3>Code</h3>
+              <pre class="prettyprint lang-css">
+                <code>
+  .element p {
+    ...
+    #hl.scaleX(2);
+  }</code>
+              </pre>
+            </div>
+            <div class="ref">
+              <h3>Reference</h3>
+              <pre class="prettyprint lang-css">
+                <code>
+  /************************************
+  * ScaleX
+  *
+  * @what?: Defines a scale transformation 
+  *         by giving a value for the X-axis
+  *
+  * @params: x,           default = 1
+  *
+  ************************************/</code>
+              </pre>
+            </div>
           </div>
-          <pre class="prettyprint linenums lang-css">
-            .element {
-              ...
-              #lh.rotate(2);
-            }
-          </pre>
-        </div>
-      </article>
-
-      <article id="skew">
-        <h2>.skew</h2>
-        <div class="content">
-          <div class="example">
-            <p>Lorem ipsum delorean mcfly&hellip;</p>
+        </article><!-- eo #scale-x -->
+        
+        <!-- Scale Y -->
+        <article id="scale-y">
+          <h2>.scaleY</h2>
+          <div class="content">
+            <div class="description">
+              <h3>: Description</h3>
+              <p>Scale the element on just the X axis</p>
+            </div>
+            <div class="example">
+              <h3>Example</h3>
+              <div>
+                <p>Lorem ipsum delorean mcfly&hellip;</p>
+              </div>
+            </div>
+            <div class="code">
+              <h3>Code</h3>
+              <pre class="prettyprint lang-css">
+                <code>
+  .element p {
+    ...
+    #hl.scaleY(2);
+  }</code>
+              </pre>
+            </div>
+            <div class="ref">
+              <h3>Reference</h3>
+              <pre class="prettyprint lang-css">
+                <code>
+  /************************************
+  * ScaleY
+  *
+  * @what?: Defines a scale transformation 
+  *         by giving a value for the Y-axis
+  *
+  * @params: y,           default = 1
+  *
+  ************************************/</code>
+              </pre>
+            </div>
           </div>
-          <pre class="prettyprint linenums lang-css">
-            .element {
-              ...
-              #lh.skew(10deg, 10deg);
-            }
-          </pre>
-        </div>
-      </article>
-
-      <article id="skew-x">
-        <h2>.skewX</h2>
-        <div class="content">
-          <div class="example">
-            <p>Lorem ipsum delorean mcfly&hellip;</p>
+        </article><!-- eo #scale-y -->
+        
+        <!-- Rotate -->
+        <article id="rotate">
+          <h2>.rotate</h2>
+          <div class="content">
+            <div class="description">
+              <h3>: Description</h3>
+              <p>Rotate the element on both the X and Y axis</p>
+            </div>
+            <div class="example">
+              <h3>Example</h3>
+              <div>
+                <p>Lorem ipsum delorean mcfly&hellip;</p>
+              </div>
+            </div>
+            <div class="code">
+              <h3>Code</h3>
+              <pre class="prettyprint lang-css">
+                <code>
+  .element {
+    ...
+    #hl.rotate(-10deg);
+  }</code>
+              </pre>
+            </div>
+            <div class="ref">
+              <h3>Reference</h3>
+              <pre class="prettyprint lang-css">
+                <code>
+  /************************************
+  * Rotate
+  *
+  * @what?: Defines a 2D rotation, the angle 
+  *         is specified in the parameter
+  *
+  * @params: degrees,     default = 90deg
+  *
+  ************************************/</code>
+              </pre>
+            </div>
           </div>
-          <pre class="prettyprint linenums lang-css">
-            .element {
-              ...
-              #lh.skewX(10deg);
-            }
-          </pre>
-        </div>
-      </article>
-
-      <article id="skew-y">
-        <h2>.skewY</h2>
-        <div class="content">
-          <div class="example">
-            <p>Lorem ipsum delorean mcfly&hellip;</p>
+        </article><!-- eo #rotate -->
+        
+        <!-- Rotate X -->
+        <article id="rotate-x">
+          <h2>.rotateX</h2>
+          <div class="content">
+            <div class="description">
+              <h3>: Description</h3>
+              <p>Rotate the element on just the X axis</p>
+            </div>
+            <div class="example">
+              <h3>Example</h3>
+              <div>
+                <p>Lorem ipsum delorean mcfly&hellip;</p>
+              </div>
+            </div>
+            <div class="code">
+              <h3>Code</h3>
+              <pre class="prettyprint lang-css">
+                <code>
+  .element {
+    ...
+    #hl.rotateX(90deg);
+  }</code>
+              </pre>
+            </div>
+            <div class="ref">
+              <h3>Reference</h3>
+              <pre class="prettyprint lang-css">
+                <code>
+  /************************************
+  * RotateX
+  *
+  * @what?: Defines a 3D rotation along the X-axis
+  *
+  * @params: degrees,     default = 90deg
+  *
+  ************************************/</code>
+              </pre>
+            </div>
           </div>
-          <pre class="prettyprint linenums lang-css">
-            .element {
-              ...
-              #lh.skewY(10deg);
-            }
-          </pre>
-        </div>
-      </article>
-
-      <article id="translate">
-        <h2>.translate</h2>
-        <div class="content">
-          <div class="example">
-            <p>Lorem ipsum delorean mcfly&hellip;</p>
+        </article><!-- eo #rotate-x -->
+        
+        <!-- Rotate Y -->
+        <article id="rotate-y">
+          <h2>.rotateY</h2>
+          <div class="content">
+            <div class="description">
+              <h3>: Description</h3>
+              <p>Rotate the element on just the Y axis</p>
+            </div>
+            <div class="example">
+              <h3>Example</h3>
+              <div>
+                <p>Lorem ipsum delorean mcfly&hellip;</p>
+              </div>
+            </div>
+            <div class="code">
+              <h3>Code</h3>
+              <pre class="prettyprint lang-css">
+                <code>
+  .element {
+    ...
+    #hl.rotateY(90deg);
+  }</code>
+              </pre>
+            </div>
+            <div class="ref">
+              <h3>Reference</h3>
+              <pre class="prettyprint lang-css">
+                <code>
+  /************************************
+  * RotateY
+  *
+  * @what?: Defines a 3D rotation along the Y-axis
+  *
+  * @params: degrees,     default = 90deg
+  *
+  ************************************/</code>
+              </pre>
+            </div>
           </div>
-          <pre class="prettyprint linenums lang-css">
-            .element {
-              ...
-              #lh.translate(30px, 10px);
-            }
-          </pre>
-        </div>
-      </article>
-
-      <article id="translate-x">
-        <h2>.translateX</h2>
-        <div class="content">
-          <div class="example">
-            <p>Lorem ipsum delorean mcfly&hellip;</p>
+        </article><!-- eo #rotate-y -->
+        
+        <!-- Skew -->
+        <article id="skew">
+          <h2>.skew</h2>
+          <div class="content">
+            <div class="description">
+              <h3>: Description</h3>
+              <p>Skew the element on both the X and Y axis</p>
+            </div>
+            <div class="example">
+              <h3>Example</h3>
+              <div>
+                <p>Lorem ipsum delorean mcfly&hellip;</p>
+              </div>
+            </div>
+            <div class="code">
+              <h3>Code</h3>
+              <pre class="prettyprint lang-css">
+                <code>
+  .element {
+    ...
+    #hl.skew(10deg, 10deg);
+  }</code>
+              </pre>
+            </div>
+            <div class="ref">
+              <h3>Reference</h3>
+              <pre class="prettyprint lang-css">
+                <code>
+  /************************************
+  * Skew
+  *
+  * @what?: Defines a 2D skew transformation 
+  *         along the X- and the Y-axis
+  *
+  * @params: angleX,      default = 10deg
+  *          angleY,      default = 10deg
+  *
+  ************************************/</code>
+              </pre>
+            </div>
           </div>
-          <pre class="prettyprint linenums lang-css">
-            .element {
-              ...
-              #lh.translateX(30px);
-            }
-          </pre>
-        </div>
-      </article>
-
-      <article id="translate-y">
-        <h2>.translateY</h2>
-        <div class="content">
-          <div class="example">
-            <p>Lorem ipsum delorean mcfly&hellip;</p>
+        </article><!-- eo #skew -->
+        
+        <!-- Skew X -->
+        <article id="skew-x">
+          <h2>.skewX</h2>
+          <div class="content">
+            <div class="description">
+              <h3>: Description</h3>
+              <p>Skew the element on just the X axis</p>
+            </div>
+            <div class="example">
+              <h3>Example</h3>
+              <div>
+                <p>Lorem ipsum delorean mcfly&hellip;</p>
+              </div>
+            </div>
+            <div class="code">
+              <h3>Code</h3>
+              <pre class="prettyprint lang-css">
+                <code>
+  .element {
+    ...
+    #hl.skewX(10deg);
+  }</code>
+              </pre>
+            </div>
+            <div class="ref">
+              <h3>Reference</h3>
+              <pre class="prettyprint lang-css">
+                <code>
+  /************************************
+  * SkewX
+  *
+  * @what?: Defines a 2D skew transformation 
+  *         along the X-axis
+  *
+  * @params: angleX,      default = 10deg
+  *
+  ************************************/</code>
+              </pre>
+            </div>
           </div>
-          <pre class="prettyprint linenums lang-css">
-            .element {
-              ...
-              #lh.translateY(10px);
-            }
-          </pre>
-        </div>
-      </article>
-
-      <article id="matrix">
-        <h2>.matrix</h2>
-        <div class="content">
-          <div class="example">
-            <p>Lorem ipsum delorean mcfly&hellip;</p>
+        </article><!-- eo #skew-x -->
+        
+        <!-- Skew Y -->
+        <article id="skew-y">
+          <h2>.skewY</h2>
+          <div class="content">
+            <div class="description">
+              <h3>: Description</h3>
+              <p>Skew the element on just the Y axis</p>
+            </div>
+            <div class="example">
+              <h3>Example</h3>
+              <div>
+                <p>Lorem ipsum delorean mcfly&hellip;</p>
+              </div>
+            </div>
+            <div class="code">
+              <h3>Code</h3>
+              <pre class="prettyprint lang-css">
+                <code>
+  .element {
+    ...
+    #hl.skewY(10deg);
+  }</code>
+              </pre>
+            </div>
+            <div class="ref">
+              <h3>Reference</h3>
+              <pre class="prettyprint lang-css">
+                <code>
+  /************************************
+  * SkewY
+  *
+  * @what?: Defines a 2D skew transformation 
+  *         along the Y-axis
+  *
+  * @params: angleY,      default = 10deg
+  *
+  ************************************/</code>
+              </pre>
+            </div>
           </div>
-          <pre class="prettyprint linenums lang-css">
-            .element {
-              ...
-              #lh.matrix(1, 1, 1, 1, 1, 1);
-            }
-          </pre>
-        </div>
-      </article>
+        </article><!-- eo #skew-y -->
+        
+        <!-- Translate -->
+        <article id="translate">
+          <h2>.translate</h2>
+          <div class="content">
+            <div class="description">
+              <h3>: Description</h3>
+              <p>Move the element on both the X and Y axis</p>
+            </div>
+            <div class="example">
+              <h3>Example</h3>
+              <div>
+                <p>Lorem ipsum delorean mcfly&hellip;</p>
+              </div>
+            </div>
+            <div class="code">
+              <h3>Code</h3>
+              <pre class="prettyprint lang-css">
+                <code>
+  .element {
+    ...
+    #hl.translate(80px, 50px);
+  }</code>
+              </pre>
+            </div>
+            <div class="ref">
+              <h3>Reference</h3>
+              <pre class="prettyprint lang-css">
+                <code>
+  /************************************
+  * Translate
+  *
+  * @what?: Defines a 2D translation
+  *
+  * @params: x,           default = 10px
+  *          y,           default = 10px
+  *
+  ************************************/</code>
+              </pre>
+            </div>
+          </div>
+        </article><!-- eo #translate -->
+        
+        <!-- Translate X -->
+        <article id="translate-x">
+          <h2>.translateX</h2>
+          <div class="content">
+            <div class="description">
+              <h3>: Description</h3>
+              <p>Move the element on just the X axis</p>
+            </div>
+            <div class="example">
+              <h3>Example</h3>
+              <div>
+                <p>Lorem ipsum delorean mcfly&hellip;</p>
+              </div>
+            </div>
+            <div class="code">
+              <h3>Code</h3>
+              <pre class="prettyprint lang-css">
+                <code>
+  .element {
+    ...
+    #hl.translateX(80px);
+  }</code>
+              </pre>
+            </div>
+            <div class="ref">
+              <h3>Reference</h3>
+              <pre class="prettyprint lang-css">
+                <code>
+  /************************************
+  * TranslateX
+  *
+  * @what?: Defines a translation, using 
+  *         only the value for the X-axis
+  *
+  * @params: x,           default = 10px
+  *
+  ************************************/
+                </code>
+              </pre>
+            </div>
+          </div>
+        </article><!-- eo #translate-x -->
 
+        <!-- Translate Y -->
+        <article id="translate-y">
+          <h2>.translateY</h2>
+          <div class="content">
+            <div class="description">
+              <h3>: Description</h3>
+              <p>Move the element on just the Y axis</p>
+            </div>
+            <div class="example">
+              <h3>Example</h3>
+              <div>
+                <p>Lorem ipsum delorean mcfly&hellip;</p>
+              </div>
+            </div>
+            <div class="code">
+              <h3>Code</h3>
+              <pre class="prettyprint lang-css">
+                <code>
+  .element {
+    ...
+    #hl.translateY(50px);
+  }</code>
+              </pre>
+            </div>
+            <div class="ref">
+              <h3>Reference</h3>
+              <pre class="prettyprint lang-css">
+                <code>
+  /************************************
+  * TranslateY
+  *
+  * @what?: Defines a translation, using 
+  *         only the value for the Y-axis
+  *
+  * @params: y,           default = 10px
+  *
+  ************************************/
+                </code>
+              </pre>
+            </div>
+          </div>
+        </article><!-- eo #translate-y -->
+        
+        <!-- Matrix -->
+        <article id="matrix">
+          <h2>.matrix</h2>
+          <div class="content">
+            <div class="description">
+              <h3>: Description</h3>
+              <p>Defines a 2D transformation, using a matrix of six values</p>
+            </div>
+            <div class="example">
+              <h3>Example</h3>
+              <div>
+                <p>Lorem ipsum delorean mcfly&hellip;</p>
+              </div>
+            </div>
+            <div class="code">
+              <h3>Code</h3>
+              <pre class="prettyprint lang-css">
+                <code>
+  .element {
+    ...
+    #hl.matrix(0.586, 0.3, -0.6, 0.586, 40, 20);
+  }</code>
+              </pre>
+            </div>
+            <div class="ref">
+              <h3>Reference</h3>
+              <pre class="prettyprint lang-css">
+                <code>
+  /************************************
+  * Matrix
+  *
+  * @what?: Defines a 2D transformation, 
+  *         using a matrix of six values
+  *
+  * @params: n1, default = 0
+  *          n2, default = 0
+  *          n3, default = 0
+  *          n4, default = 0
+  *          n5, default = 0
+  *          n6, default = 0
+  ************************************/</code>
+              </pre>
+            </div>
+          </div>
+        </article><!-- eo #matrix -->
+        
+      </section>
     </div>
     <footer>
       <p>Powered by</p>
@@ -375,3 +1120,34 @@
   </div>
 </body>
 </html>
+
+
+<!-- Title 
+<article id="test">
+  <h2>Title</h2>
+  <div class="content">
+    <p class="description">Lorem</p>
+    <div class="example">
+      <h3>Example</h3>
+      <div>
+        <p>Lorem ipsum delorean mcfly&hellip;</p>
+      </div>
+    </div>
+    <div class="code">
+      <h3>Code</h3>
+      <pre class="prettyprint lang-css">
+        <code>
+          
+        </code>
+      </pre>
+    </div>
+    <div class="ref">
+      <h3>Reference</h3>
+      <pre class="prettyprint lang-css">
+        <code>
+          
+        </code>
+      </pre>
+    </div>
+  </div>
+</article><!-- eo #test -->
