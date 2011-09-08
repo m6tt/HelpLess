@@ -1,0 +1,465 @@
+/* HelpLess
+*
+*  HelpLess is a Helper Library for the increasingly popular 
+*  LESS dynamic stylesheet language. 
+*  Read more about LESS http://lesscss.org/
+*
+*  Simply import helpless.less and let it make your life easier
+*
+*  @author: m6tt
+*  @date: 11/9/2011
+*  @contributors:
+*  - 
+*
+*  @contents:
+*  - .meyer-reset
+*  - .clearfix
+*  - .border
+*  - .round-all-corners
+*  - .rounded-corners
+*  - .transition
+*  - .drop-shadow
+*  - .inner-shadow
+*  - .text-shadow
+*  - .background-gradient
+*  - .columns
+*  - .scale
+*  - .scaleX
+*  - .scaleY
+*  - .rotate
+*  - .rotateX
+*  - .rotateY
+*  - .skew
+*  - .skewX
+*  - .skewY
+*  - .translate
+*  - .translateX
+*  - .translateY
+*  - .matrix
+*/
+
+#hl {
+  /************************************
+  * The one and only Meyer Reset
+  * http://meyerweb.com/eric/tools/css/reset/
+  ************************************/
+  .meyer-reset () {
+    /* http://meyerweb.com/eric/tools/css/reset/ v2.0 | 20110126 license: none (public domain) */
+    html, body, div, span, applet, object, iframe,
+    h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+    a, abbr, acronym, address, big, cite, code,
+    del, dfn, em, img, ins, kbd, q, s, samp,
+    small, strike, strong, sub, sup, tt, var,
+    b, u, i, center,
+    dl, dt, dd, ol, ul, li,
+    fieldset, form, label, legend,
+    table, caption, tbody, tfoot, thead, tr, th, td,
+    article, aside, canvas, details, embed,
+    figure, figcaption, footer, header, hgroup,
+    menu, nav, output, ruby, section, summary,
+    time, mark, audio, video { margin: 0; padding: 0; border: 0; font-size: 100%; font: inherit; vertical-align: baseline; }
+    /* HTML5 display-role reset for older browsers */
+    article, aside, details, figcaption, figure,
+    footer, header, hgroup, menu, nav, section { display: block; }
+    body { line-height: 1; }
+    ol, ul { list-style: none; }
+    blockquote, q { quotes: none; }
+    blockquote:before, blockquote:after, q:before, q:after { content: ''; content: none; }
+    table { border-collapse: collapse; border-spacing: 0; }
+  }
+
+  /************************************
+  * Clearfix - still working on this
+  * @note: Do no place with the element itself
+  * @params: element - can be '.class-name' or '#id-name'
+  ************************************/
+//  .clearfix (@element) {
+//     ~"@element:before, @element:after { content: ''; display: table; }";
+//     ~"@element:after { clear: both; }";
+//     ~"@element { zoom: 1; }"
+//   }
+
+  /************************************
+  * Border
+  *
+  * @what?: Add a 1px solid border 
+  *        super quick.
+  *
+  * @params: colour,      default = #000
+  *
+  ************************************/
+  .border (@colour: #000) {
+    border: 1px solid @colour;
+  }
+
+  /************************************
+  * Round all corners
+  * 
+  * @what?: Rounds every corner equally
+  *
+  * @params: radius,      default = 5px
+  *
+  ************************************/
+  .round-all-corners (@radius: 5px) {
+    -webkit-border-radius: @radius;
+       -moz-border-radius: @radius;
+            border-radius: @radius;
+  }
+
+  /************************************
+  * Rounded corners
+  *
+  * @what?: Round each corner individually
+  *
+  * @params: topLeft,     default = 5px
+  *          topRight,    default = 5px
+  *          bottomRight, default = 5px
+  *          bottomLeft,  default = 5px
+  *
+  ************************************/
+  .rounded-corners (@topLeft: 5px, @topRight: 5px, @bottomRight: 5px, @bottomLeft: 5px) {
+    -moz-border-radius-topleft: @topLeft;
+    -moz-border-radius-topright: @topRight;
+    -moz-border-radius-bottomright: @bottomRight;
+    -moz-border-radius-bottomleft: @bottomLeft;
+    -webkit-border-radius: @topLeft @topRight @bottomRight @bottomLeft;
+    border-radius: @topLeft @topRight @bottomRight @bottomLeft;
+  }
+
+  /************************************
+  * Transition
+  *
+  * @what?: Defines a CSS3 transition
+  *
+  * @params: property,    default = all
+  *          duration,    default = .5s
+  *          ease,        default = linear
+  *          delay,       default = .0s
+  *
+  ************************************/
+  .transition (@property: all, @duration: .5s, @ease: linear, @delay: .0s) {
+    -webkit-transition: @arguments;
+       -moz-transition: @arguments;
+         -o-transition: @arguments;
+            transition: @arguments;
+  }
+
+  /************************************
+  * Drop shadow
+  *
+  * @what?: Adds an outer shadow to the
+  *         html element. To add a shadow
+  *         to text use #hl.text-shadow(...)
+  *
+  * @params: x,           default = 0px
+  *          y,           default = 1px
+  *          blur,        default = 1px
+  *          colour,      default = rgba(0, 0, 0, .6)
+  *
+  ************************************/
+  .drop-shadow (@x: 0px, @y: 1px, @blur: 1px, @colour: rgba(0, 0, 0, .6)) {
+    -webkit-box-shadow: @arguments;
+       -moz-box-shadow: @arguments;
+            box-shadow: @arguments;
+  }
+
+  /************************************
+  * Inner shadow
+  * 
+  * @what: Adds an inner shadow to the
+  *        html element.
+  *
+  * @params: x,           default = 0px
+  *          y,           default = 1px
+  *          blur,        default = 1px
+  *          colour,      default = rgba(0, 0, 0, .6)
+  *
+  ************************************/
+  .inner-shadow (@x: 0px, @y: 1px, @blur: 1px, @colour: rgba(0, 0, 0, .6)) {
+    -webkit-box-shadow: inset @arguments;
+       -moz-box-shadow: inset @arguments;
+            box-shadow: inset @arguments;
+  }
+
+  /************************************
+  * Text shadow
+  *
+  * @what?: Adds an outer shadow to text
+  *
+  * @params: x,           default = 1px
+  *          y,           default = 1px
+  *          blur,        default = 1px
+  *          colour,      default = rgba(0, 0, 0, .6)
+  *
+  ************************************/
+  .text-shadow (@x: 1px, @y: 1px, @blur: 1px, @colour: rgba(0, 0, 0, .6)) {
+    text-shadow: @arguments;
+  }
+
+  /************************************
+  * Background Gradient
+  * 
+  * @what?: Adds a background gradient to
+  *         an HTML element
+  * 
+  * @params: colourFrom,       default = #bbb
+  *          colourTo,         default = #f1f1f1
+  *          fallbackColour,   default = #f1f1f1
+  *          fallbackImageUrl, default = ''
+  *
+  * @thanksBeTo: http://css-tricks.com/5700-css3-gradients/
+  *
+  ************************************/
+  .background-gradient (@colourfrom: #bbb, @colourTo: #f1f1f1, @fallbackColour: #f1f1f1, @fallbackImageUrl: '') {
+    background-color: @fallbackColour;
+    background-image: url("@fallbackImage");
+    background-repeat: no-repeat;
+    background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(@colourfrom), to(@colourTo));
+    background-image: -webkit-linear-gradient(bottom, @colourfrom, @colourTo);
+    background-image: -moz-linear-gradient(bottom, @colourfrom, @colourTo);
+    background-image: -ms-linear-gradient(bottom, @colourfrom, @colourTo);
+    background-image: -o-linear-gradient(bottom, @colourfrom, @colourTo);
+  }
+
+  /************************************
+  * Columns
+  *
+  * @what?: Sets CSS3 columns within 
+  *         blocks of html text
+  *
+  * @params: count,       default = 1
+  *          gap,         default = 10px
+  *
+  ************************************/
+  .columns (@count: 1, @gap: 10px) {
+    -moz-column-count: @count;
+    -moz-column-gap: @gap;
+    -webkit-column-count: @count;
+    -webkit-column-gap: @gap;
+    column-count: @count;
+    column-gap: @gap;
+  }
+
+  /************************************
+  * Scale
+  *
+  * @what?: Defines a 2D scale transformation
+  *
+  * @params: amount,      default = 1
+  *
+  ************************************/
+  .scale (@amount: 1) {
+    transform:scale(@amount);
+    -ms-transform:scale(@amount);
+    -moz-transform:scale(@amount);
+    -webkit-transform:scale(@amount);
+    -o-transform:scale(@amount);
+  }
+
+  /************************************
+  * ScaleX
+  *
+  * @what?: Defines a scale transformation 
+  *         by giving a value for the X-axis
+  *
+  * @params: x,           default = 1
+  *
+  ************************************/
+  .scaleX (@x: 1) {
+    transform:scaleX(@x);
+    -ms-transform:scaleX(@x);
+    -moz-transform:scaleX(@x);
+    -webkit-transform:scaleX(@x);
+    -o-transform:scaleX(@x);
+  }
+
+  /************************************
+  * ScaleY
+  *
+  * @what?: Defines a scale transformation 
+  *         by giving a value for the Y-axis
+  *
+  * @params: y,           default = 1
+  *
+  ************************************/
+  .scaleY (@y: 1) {
+    transform:scaleY(@y);
+    -ms-transform:scaleY(@y);
+    -moz-transform:scaleY(@y);
+    -webkit-transform:scaleY(@y);
+    -o-transform:scaleY(@y);
+  }
+
+  /************************************
+  * Rotate
+  *
+  * @what?: Defines a 2D rotation, the angle 
+  *         is specified in the parameter
+  *
+  * @params: degrees,     default = 90deg
+  *
+  ************************************/
+  .rotate (@degrees: 90deg) {
+    transform:rotate(@degrees);
+    -ms-transform:rotate(@degrees);
+    -moz-transform:rotate(@degrees);
+    -webkit-transform:rotate(@degrees);
+    -o-transform:rotate(@degrees);
+  }
+
+  /************************************
+  * RotateX
+  *
+  * @what?: Defines a 3D rotation along the X-axis
+  *
+  * @params: degrees,     default = 90deg
+  *
+  ************************************/
+  .rotateX (@degrees: 90deg) {
+    transform:rotateX(@degrees);
+    -ms-transform:rotateX(@degrees);
+    -moz-transform:rotateX(@degrees);
+    -webkit-transform:rotateX(@degrees);
+    -o-transform:rotateX(@degrees);
+  }
+
+  /************************************
+  * RotateY
+  *
+  * @what?: Defines a 3D rotation along the Y-axis
+  *
+  * @params: degrees,     default = 90deg
+  *
+  ************************************/
+  .rotateY (@degrees: 90deg) {
+    transform:rotateY(@degrees);
+    -ms-transform:rotateY(@degrees);
+    -moz-transform:rotateY(@degrees);
+    -webkit-transform:rotateY(@degrees);
+    -o-transform:rotateY(@degrees);
+  }
+
+  /************************************
+  * Skew
+  *
+  * @what?: Defines a 2D skew transformation 
+  *         along the X- and the Y-axis
+  *
+  * @params: angleX,      default = 10deg
+  *          angleY,      default = 10deg
+  *
+  ************************************/
+  .skew (@angleX: 10deg, @angleY: 10deg) {
+    transform:skew(@angleX, @angleY);
+    -ms-transform:skew(@angleX, @angleY);
+    -moz-transform:skew(@angleX, @angleY);
+    -webkit-transform:skew(@angleX, @angleY);
+    -o-transform:skew(@angleX, @angleY);
+  }
+
+  /************************************
+  * SkewX
+  *
+  * @what?: Defines a 2D skew transformation 
+  *         along the X-axis
+  *
+  * @params: angleX,      default = 10deg
+  *
+  ************************************/
+  .skewX (@angleX: 10deg) {
+    transform:skewX(@angleX);
+    -ms-transform:skewX(@angleX);
+    -moz-transform:skewX(@angleX);
+    -webkit-transform:skewX(@angleX);
+    -o-transform:skewX(@angleX);
+  }
+
+  /************************************
+  * SkewY
+  *
+  * @what?: Defines a 2D skew transformation 
+  *         along the Y-axis
+  *
+  * @params: angleY,      default = 10deg
+  *
+  ************************************/
+  .skewY (@angleY: 10deg) {
+    transform:skewY(@angleY);
+    -ms-transform:skewY(@angleY);
+    -moz-transform:skewY(@angleY);
+    -webkit-transform:skewY(@angleY);
+    -o-transform:skewY(@angleY);
+  }
+
+  /************************************
+  * Translate
+  *
+  * @what?: Defines a 2D translation
+  *
+  * @params: x,           default = 10px
+  *          y,           default = 10px
+  *
+  ************************************/
+  .translate (@x: 10px, @y: 10px) {
+    transform:translate(@x, @y);
+    -ms-transform:translate(@x, @y);
+    -moz-transform:translate(@x, @y);
+    -webkit-transform:translate(@x, @y);
+    -o-transform:translate(@x, @y);
+  }
+
+  /************************************
+  * TranslateX
+  *
+  * @what?: Defines a translation, using 
+  *         only the value for the X-axis
+  *
+  * @params: x,           default = 10px
+  *
+  ************************************/
+  .translateX (@x: 0px) {
+    transform:translateX(@x);
+    -ms-transform:translateX(@x);
+    -moz-transform:translateX(@x);
+    -webkit-transform:translateX(@x);
+    -o-transform:translateX(@x);
+  }
+
+  /************************************
+  * TranslateY
+  *
+  * @what?: Defines a translation, using 
+  *         only the value for the Y-axis
+  *
+  * @params: y,           default = 10px
+  *
+  ************************************/
+  .translateY (@y: 0px) {
+    transform:translateY(@y);
+    -ms-transform:translateY(@y);
+    -moz-transform:translateY(@y);
+    -webkit-transform:translateY(@y);
+    -o-transform:translateY(@y);
+  }
+
+  /************************************
+  * Matrix
+  *
+  * @what?: Defines a 2D transformation,
+  *         using a matrix of six values
+  *
+  * @params: n1, default = 0
+  *          n2, default = 0
+  *          n3, default = 0
+  *          n4, default = 0
+  *          n5, default = 0
+  *          n6, default = 0
+  ************************************/
+  .matrix (@n1: 0, @n2: 0, @n3: 0, @n4: 0, @n5: 0, @n6: 0) {
+    transform:matrix(@n1, @n2, @n3, @n4, @n5, @n6);
+    -ms-transform:matrix(@n1, @n2, @n3, @n4, @n5, @n6);
+    -moz-transform:matrix(@n1, @n2, @n3, @n4, @n5, @n6);
+    -webkit-transform:matrix(@n1, @n2, @n3, @n4, @n5, @n6);
+    -o-transform:matrix(@n1, @n2, @n3, @n4, @n5, @n6);
+  }
+}
