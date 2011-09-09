@@ -13,7 +13,8 @@
 *
 *  @contents:
 *  - .meyer-reset
-*  - .clearfix
+*  - .clearfix - !WIP
+*  - .centered
 *  - .border
 *  - .round-all-corners
 *  - .rounded-corners
@@ -78,6 +79,20 @@
 //     ~"@element:after { clear: both; }";
 //     ~"@element { zoom: 1; }"
 //   }
+
+  /************************************
+  * Centered
+  *
+  * @what?: Center your object with an 
+  *         automatic margin
+  *
+  * @params: width,      default = 960px
+  *
+  ************************************/
+  .centered(@width: 960px) {
+    width: @width;
+    margin: 0 auto;
+  }
 
   /************************************
   * Border
