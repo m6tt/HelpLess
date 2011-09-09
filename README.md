@@ -1,5 +1,7 @@
 ## HelpLess ##
 
+http://m6tt.github.com/HelpLess/img/logo.png
+
 1. What is it?
 
     HelpLess is a Helper Library for the increasingly popular 
