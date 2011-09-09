@@ -22,6 +22,7 @@
 5. Features
 
     - .meyer-reset
+    - .centered
     - .border
     - .round-all-corners
     - .rounded-corners
