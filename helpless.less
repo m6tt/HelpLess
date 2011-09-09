@@ -39,7 +39,7 @@
 
 #hl {
   /************************************
-  * The one and only Meyer Reset
+  * Meyer Reset
   * http://meyerweb.com/eric/tools/css/reset/
   ************************************/
   .reset () {
@@ -125,15 +125,17 @@
   }
 
   /************************************
-  * Clearfix - still working on this
-  * @note: Do no place with the element itself
-  * @params: element - can be '.class-name' or '#id-name'
+  * Clearfix
+  *
+  * what?: Removes the need to add .clearfix as
+  *        a class to your elements.
+  *
   ************************************/
-//  .clearfix (@element) {
-//     ~"@element:before, @element:after { content: ''; display: table; }";
-//     ~"@element:after { clear: both; }";
-//     ~"@element { zoom: 1; }"
-//   }
+  .clearfix () {
+    &:before { content: ''; display: block; }
+    &:after { content: ''; display: table; clear: both; }
+    zoom: 1;
+  }
 
   /************************************
   * Centered
