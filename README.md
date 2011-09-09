@@ -14,8 +14,12 @@
 
     As long as you can use LESS (http://lesscss.org) then you will be fine. 
     Just import helpless.less as you would any other CSS or LESS file.
+    
+4. Getting Started
 
-4. Features
+    Visit http://m6tt.github.com/HelpLess for examples of how to use each function
+
+5. Features
 
     - .meyer-reset
     - .border
