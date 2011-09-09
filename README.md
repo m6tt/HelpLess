@@ -1,6 +1,6 @@
 ## HelpLess ##
 
-http://m6tt.github.com/HelpLess/img/logo.png
+![HelpLess logo](http://m6tt.github.com/HelpLess/img/logo.png)
 
 1. What is it?
 
