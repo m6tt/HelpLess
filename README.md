@@ -21,7 +21,8 @@
 
 5. Features
 
-    - .meyer-reset
+    - .reset (by meyer)
+    - .normalize (by necolas)
     - .centered
     - .border
     - .round-all-corners
