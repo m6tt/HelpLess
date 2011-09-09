@@ -23,6 +23,7 @@
 
     - .reset (by meyer)
     - .normalize (by necolas)
+    - .clearfix
     - .centered
     - .border
     - .round-all-corners
