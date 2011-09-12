@@ -9,6 +9,8 @@
 *  @author: m6tt
 *
 *  @contents:
+*
+*  BASICS
 *  - .reset
 *  - .normalize
 *  - .clearfix
@@ -35,15 +37,25 @@
 *  - .translateX
 *  - .translateY
 *  - .matrix
+*  
+*  GRID
+*  - .grid
+*  
+*  USER INTERFACE
+*  - 
+*  - 
+*  - 
+*  
 */
 
 #hl {
+
   /************************************
   * Meyer Reset
   * http://meyerweb.com/eric/tools/css/reset/
   ************************************/
-  .reset () {
-    /* http://meyerweb.com/eric/tools/css/reset/ v2.0 | 20110126 license: none (public domain) */
+  .reset() {
+    /* http://meyerweb.com/eric/tools/css/reset/ v2.0 | 20110126 license: none(public domain) */
     html, body, div, span, applet, object, iframe,
     h1, h2, h3, h4, h5, h6, p, blockquote, pre,
     a, abbr, acronym, address, big, cite, code,
@@ -71,7 +83,7 @@
   * Normalize by necolas
   * https://github.com/necolas/normalize.css
   ************************************/
-  .normalize () {
+  .normalize() {
     /*! normalize.css 2011-08-31T22:02 UTC · http://github.com/necolas/normalize.css */
     article,aside,details,figcaption,figure,footer,header,hgroup,nav,section{display:block;}
     audio,canvas,video{display:inline-block;*display:inline;*zoom:1;}audio:not([controls]){display:none;}
@@ -132,7 +144,7 @@
   *        to your elements.
   *
   ************************************/
-  .clearfix () {
+  .clearfix() {
     &:before { content: ''; display: block; }
     &:after { content: ''; display: table; clear: both; }
     zoom: 1;
@@ -161,7 +173,7 @@
   * @params: colour,      default = #000
   *
   ************************************/
-  .border (@colour: #000) {
+  .border(@colour: #000) {
     border: 1px solid @colour;
   }
 
@@ -173,7 +185,7 @@
   * @params: radius,      default = 5px
   *
   ************************************/
-  .round-all-corners (@radius: 5px) {
+  .round-all-corners(@radius: 5px) {
     -webkit-border-radius: @radius;
        -moz-border-radius: @radius;
             border-radius: @radius;
@@ -190,7 +202,7 @@
   *          bottomLeft,  default = 5px
   *
   ************************************/
-  .rounded-corners (@topLeft: 5px, @topRight: 5px, @bottomRight: 5px, @bottomLeft: 5px) {
+  .rounded-corners(@topLeft: 5px, @topRight: 5px, @bottomRight: 5px, @bottomLeft: 5px) {
     -moz-border-radius-topleft: @topLeft;
     -moz-border-radius-topright: @topRight;
     -moz-border-radius-bottomright: @bottomRight;
@@ -210,7 +222,7 @@
   *          delay,       default = .0s
   *
   ************************************/
-  .transition (@property: all, @duration: .5s, @ease: linear, @delay: .0s) {
+  .transition(@property: all, @duration: .5s, @ease: linear, @delay: .0s) {
     -webkit-transition: @arguments;
        -moz-transition: @arguments;
          -o-transition: @arguments;
@@ -230,7 +242,7 @@
   *          colour,      default = rgba(0, 0, 0, .6)
   *
   ************************************/
-  .drop-shadow (@x: 0px, @y: 1px, @blur: 1px, @colour: rgba(0, 0, 0, .6)) {
+  .drop-shadow(@x: 0px, @y: 1px, @blur: 1px, @colour: rgba(0, 0, 0, .6)) {
     -webkit-box-shadow: @arguments;
        -moz-box-shadow: @arguments;
             box-shadow: @arguments;
@@ -248,7 +260,7 @@
   *          colour,      default = rgba(0, 0, 0, .6)
   *
   ************************************/
-  .inner-shadow (@x: 0px, @y: 1px, @blur: 1px, @colour: rgba(0, 0, 0, .6)) {
+  .inner-shadow(@x: 0px, @y: 1px, @blur: 1px, @colour: rgba(0, 0, 0, .6)) {
     -webkit-box-shadow: inset @arguments;
        -moz-box-shadow: inset @arguments;
             box-shadow: inset @arguments;
@@ -265,7 +277,7 @@
   *          colour,      default = rgba(0, 0, 0, .6)
   *
   ************************************/
-  .text-shadow (@x: 1px, @y: 1px, @blur: 1px, @colour: rgba(0, 0, 0, .6)) {
+  .text-shadow(@x: 1px, @y: 1px, @blur: 1px, @colour: rgba(0, 0, 0, .6)) {
     text-shadow: @arguments;
   }
 
@@ -283,7 +295,7 @@
   * @thanksBeTo: http://css-tricks.com/5700-css3-gradients/
   *
   ************************************/
-  .background-gradient (@colourfrom: #bbb, @colourTo: #f1f1f1, @fallbackColour: #f1f1f1, @fallbackImageUrl: '') {
+  .background-gradient(@colourfrom: #bbb, @colourTo: #f1f1f1, @fallbackColour: #f1f1f1, @fallbackImageUrl: '') {
     background-color: @fallbackColour;
     background-image: url("@fallbackImage");
     background-repeat: no-repeat;
@@ -304,7 +316,7 @@
   *          gap,         default = 10px
   *
   ************************************/
-  .columns (@count: 1, @gap: 10px) {
+  .columns(@count: 1, @gap: 10px) {
     -moz-column-count: @count;
     -moz-column-gap: @gap;
     -webkit-column-count: @count;
@@ -321,7 +333,7 @@
   * @params: amount,      default = 1
   *
   ************************************/
-  .scale (@amount: 1) {
+  .scale(@amount: 1) {
     transform:scale(@amount);
     -ms-transform:scale(@amount);
     -moz-transform:scale(@amount);
@@ -338,7 +350,7 @@
   * @params: x,           default = 1
   *
   ************************************/
-  .scaleX (@x: 1) {
+  .scaleX(@x: 1) {
     transform:scaleX(@x);
     -ms-transform:scaleX(@x);
     -moz-transform:scaleX(@x);
@@ -355,7 +367,7 @@
   * @params: y,           default = 1
   *
   ************************************/
-  .scaleY (@y: 1) {
+  .scaleY(@y: 1) {
     transform:scaleY(@y);
     -ms-transform:scaleY(@y);
     -moz-transform:scaleY(@y);
@@ -372,7 +384,7 @@
   * @params: degrees,     default = 90deg
   *
   ************************************/
-  .rotate (@degrees: 90deg) {
+  .rotate(@degrees: 90deg) {
     transform:rotate(@degrees);
     -ms-transform:rotate(@degrees);
     -moz-transform:rotate(@degrees);
@@ -388,7 +400,7 @@
   * @params: degrees,     default = 90deg
   *
   ************************************/
-  .rotateX (@degrees: 90deg) {
+  .rotateX(@degrees: 90deg) {
     transform:rotateX(@degrees);
     -ms-transform:rotateX(@degrees);
     -moz-transform:rotateX(@degrees);
@@ -404,7 +416,7 @@
   * @params: degrees,     default = 90deg
   *
   ************************************/
-  .rotateY (@degrees: 90deg) {
+  .rotateY(@degrees: 90deg) {
     transform:rotateY(@degrees);
     -ms-transform:rotateY(@degrees);
     -moz-transform:rotateY(@degrees);
@@ -422,7 +434,7 @@
   *          angleY,      default = 10deg
   *
   ************************************/
-  .skew (@angleX: 10deg, @angleY: 10deg) {
+  .skew(@angleX: 10deg, @angleY: 10deg) {
     transform:skew(@angleX, @angleY);
     -ms-transform:skew(@angleX, @angleY);
     -moz-transform:skew(@angleX, @angleY);
@@ -439,7 +451,7 @@
   * @params: angleX,      default = 10deg
   *
   ************************************/
-  .skewX (@angleX: 10deg) {
+  .skewX(@angleX: 10deg) {
     transform:skewX(@angleX);
     -ms-transform:skewX(@angleX);
     -moz-transform:skewX(@angleX);
@@ -456,7 +468,7 @@
   * @params: angleY,      default = 10deg
   *
   ************************************/
-  .skewY (@angleY: 10deg) {
+  .skewY(@angleY: 10deg) {
     transform:skewY(@angleY);
     -ms-transform:skewY(@angleY);
     -moz-transform:skewY(@angleY);
@@ -473,7 +485,7 @@
   *          y,           default = 10px
   *
   ************************************/
-  .translate (@x: 10px, @y: 10px) {
+  .translate(@x: 10px, @y: 10px) {
     transform:translate(@x, @y);
     -ms-transform:translate(@x, @y);
     -moz-transform:translate(@x, @y);
@@ -490,7 +502,7 @@
   * @params: x,           default = 10px
   *
   ************************************/
-  .translateX (@x: 0px) {
+  .translateX(@x: 0px) {
     transform:translateX(@x);
     -ms-transform:translateX(@x);
     -moz-transform:translateX(@x);
@@ -507,7 +519,7 @@
   * @params: y,           default = 10px
   *
   ************************************/
-  .translateY (@y: 0px) {
+  .translateY(@y: 0px) {
     transform:translateY(@y);
     -ms-transform:translateY(@y);
     -moz-transform:translateY(@y);
@@ -521,18 +533,73 @@
   * @what?: Defines a 2D transformation,
   *         using a matrix of six values
   *
-  * @params: n1, default = 0
-  *          n2, default = 0
-  *          n3, default = 0
-  *          n4, default = 0
-  *          n5, default = 0
-  *          n6, default = 0
+  * @params: n1,          default = 0
+  *          n2,          default = 0
+  *          n3,          default = 0
+  *          n4,          default = 0
+  *          n5,          default = 0
+  *          n6,          default = 0
+  *
   ************************************/
-  .matrix (@n1: 0, @n2: 0, @n3: 0, @n4: 0, @n5: 0, @n6: 0) {
+  .matrix(@n1: 0, @n2: 0, @n3: 0, @n4: 0, @n5: 0, @n6: 0) {
     transform:matrix(@n1, @n2, @n3, @n4, @n5, @n6);
     -ms-transform:matrix(@n1, @n2, @n3, @n4, @n5, @n6);
     -moz-transform:matrix(@n1, @n2, @n3, @n4, @n5, @n6);
     -webkit-transform:matrix(@n1, @n2, @n3, @n4, @n5, @n6);
     -o-transform:matrix(@n1, @n2, @n3, @n4, @n5, @n6);
+  }
+  
+  /************************************
+  * Grid
+  *
+  * @what?: Defines the base variables needed
+  *         for the HelpLess grid system.
+  *
+  * @how to use?: Call this before you start defining the grid.
+  *               Does not need to be inside an element
+  *
+  * @params: @width,      default = 960px
+  *          @colnum,     default = 16
+  *          @colgutter,  default = 10px
+  *
+  ************************************/
+  .grid(@width: 960px, @colnum: 16, @colgutter: 10px) {
+    @main-width: @width;
+    @col-width: @main-width / @colnum;
+    @col-gutter: @colgutter;
+  }
+  
+  /************************************
+  * Row
+  *
+  * @what?: Defines an element as a row.
+  *         clears all clearfixes all columns
+  *         directly inside.
+  *
+  ************************************/
+  .row() {
+    .clearfix();
+    display: block;
+    width: @main-width + @col-gutter;
+    overflow-y: visible;
+    margin-left: -(@col-gutter / 2);
+  }
+
+  /************************************
+  * Col
+  *
+  * @what?: Defines an element as a column.
+  *         Sets the width depending on the 
+  *         supplied arguments and the width
+  *         set in .grid()
+  *
+  * @params: @num,        default = 1
+  *
+  ************************************/
+  .col(@num: 1) {
+    float: left;
+    display: inline-block;
+    width: (@col-width * @num) - @col-gutter;
+    margin-left: @col-gutter;
   }
 }
