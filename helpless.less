@@ -558,17 +558,38 @@
   * @how to use?: Call this before you start defining the grid.
   *               Does not need to be inside an element
   *
-  * @params: @width,      default = 960px
+  * @params: @width,      default = 960
   *          @colnum,     default = 16
-  *          @colgutter,  default = 10px
+  *          @colgutter,  default = 10
   *
+  * @best widths: 1200, 960, 720, 400, 320
   ************************************/
-  .grid(@width: 960px, @colnum: 16, @colgutter: 10px) {
-    @main-width: @width;
-    @col-width: @main-width / @colnum;
-    @col-gutter: @colgutter;
+  .grid(@width: 960, @colnum: 16, @colgutter: 10) {
+    width: 0px + @width;
+    @col-width: 100% / @colnum;
+    @col-gutter-percent: 0% + ((@colgutter / @width) * 100);
+  }
+
+  .grid1200() {
+    .grid(1200);
   }
   
+  .grid960() {
+    .grid(960);
+  }
+  
+  .grid720() {
+    .grid(720);
+  }
+  
+  .grid400() {
+    .grid(400);
+  }
+  
+  .grid320() {
+    .grid(320);
+  }
+
   /************************************
   * Row
   *
@@ -580,9 +601,9 @@
   .row() {
     .clearfix();
     display: block;
-    width: @main-width + @col-gutter;
+    width: 100%;
     overflow-y: visible;
-    margin-left: -(@col-gutter / 2);
+    margin-left: -(@col-gutter-percent / 2);
   }
 
   /************************************
@@ -598,8 +619,46 @@
   ************************************/
   .col(@num: 1) {
     float: left;
-    display: inline-block;
-    width: (@col-width * @num) - @col-gutter;
-    margin-left: @col-gutter;
+    display: block;
+    min-width: @col-width * @num;
+    padding: 0 0 0 @col-gutter-percent !important;
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
   }
+  
+  /***********************************
+  * UI Elements
+  * 
+  * 
+  ***********************************/
+  .button(@baseColor: #ccc, @borderRadius: 3px) {
+    border: 1px solid lighten(@baseColor, 5%);
+    border-left: 1px solid darken(@baseColor, 5%);
+    border-right: 1px solid darken(@baseColor, 5%);
+    border-bottom: 1px solid darken(@baseColor, 10%);
+    color: darken(@baseColor, 45%);
+    padding: 8px 14px;
+    .background-gradient(@baseColor, lighten(@baseColor, 20%), lighten(@baseColor, 20%));
+    .text-shadow(1px, 1px, 1px, lighten(@baseColor, 20%));
+    .round-all-corners(@borderRadius);
+    .transition(all, .2s, ease-in-out);
+    
+    &:hover {
+      background-position: 0px 10px;
+      border: 1px solid lighten(@baseColor, 5%);
+      border-left: 1px solid @baseColor;
+      border-right: 1px solid @baseColor;
+      border-bottom: 1px solid darken(@baseColor, 10%);
+    }
+    
+    &.active {
+      margin-top: 1px;
+    }
+  }
+  
+  .roundButton(@baseColor: #ccc) {
+    .button(@baseColor, 20px);
+  }
+  
 }
