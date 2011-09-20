@@ -25,6 +25,7 @@
 
         @import 'libs/helpless-x.x.x.less'; // Where x.x.x corresponds to the version number
 
+
     **Normalize**
     To add normalize.css to your stylesheet call #hl.normalize() at the top of the document outside of any html elements.
     
@@ -48,6 +49,7 @@
                }
             }
         }
+    
     
     **Setting up a grid.**
     I will use the following html structure as an example:
@@ -90,6 +92,7 @@
             }
         }
         
+        
     **Themes**
     Themes are a way of quickly styling the base elements of your page. They do not add any structural or layout based styling
     
@@ -98,6 +101,7 @@
             
             ...
         }
+        
         
     **Typography**
     There a number of different helpers for typography. If you want to quickly choose a serif style with the addition of a webfont you would:
@@ -116,6 +120,7 @@
             ...
         }
         
+        
     **Lists**
     To quickly remove the default bullet styling from a list:
     
@@ -129,6 +134,7 @@
             #hl.ui.list.horizontal();
         }
        
+    
     
     
 5. Reference
