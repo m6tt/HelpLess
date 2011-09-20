@@ -140,8 +140,9 @@
 5. Reference
 
   ------------------------------------------------------------------------------
-    BASICS                     =>    syntax
+    BASICS                    
   ------------------------------------------------------------------------------
+    Name                             Usage
     - .reset                   =>    #hl.reset() - call outside of element
     - .normalize               =>    #hl.normalize - call outside of element
     - .clearfix                =>    #hl.clearfix()
@@ -170,8 +171,9 @@
     - .matrix                  =>    #hl.matrix(n, n, n, n, n, n)
 
   ------------------------------------------------------------------------------
-    GRID                       =>    syntax
+    GRID                       
   ------------------------------------------------------------------------------
+    Name                             Usage
     - .grid                    =>    namespace, do not call directly, use .make or one of the predefined grid makers
      - .make                   =>    #hl.grid.make(width, colNumber, gutterWidth)
      - .1200                   =>    #hl.grid.1200();
@@ -193,6 +195,7 @@
   ------------------------------------------------------------------------------
     TYPOGRAPHY
   ------------------------------------------------------------------------------
+    Name                             Usage
     - .typo                    =>    namespace, do not call directly
      - .serif                  =>    #hl.typo.serif(webfont-name-optional);
      - .sans                   =>    #hl.typo.sans(webfont-name-optional);
@@ -201,6 +204,7 @@
   ------------------------------------------------------------------------------
     IMAGES
   ------------------------------------------------------------------------------
+    Name                             Usage
     - .img                     =>    namespace, do not call directly
      - .responsive             =>    #hl.img.responsive();
      - .framed                 =>    #hl.img.framed();
@@ -208,6 +212,7 @@
   ------------------------------------------------------------------------------
     USER INTERFACE
   ------------------------------------------------------------------------------
+    Name                             Usage
     - .ui                      =>    namespace, do not call directly
      - .themes                 =>    namespace, do not call directly
       - .light                 =>    #hl.ui.themes.light(); - call within <body> element
@@ -216,14 +221,14 @@
       - .subtle                =>    #hl.list.subtle(); - call within <ul> element
       - .horizontal            =>    #hl.list.horizontal(); - call within <ul> element
 
-7. Thanks 
+6. Thanks 
    
     Included in HelpLess are two reset mixins:
 
     Eric Meyer's [html reset](http://meyerweb.com/eric/tools/css/reset/)
     Necolas' [normalize](https://github.com/necolas/normalize.css)
 
-6. License
+7. License
     
     HelpLess is released under the MIT license.
     
