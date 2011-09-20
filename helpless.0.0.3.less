@@ -5,7 +5,7 @@
 *  Read more about LESS: http://lesscss.org/
 *  
 *  @How to use:
-*  Import helpless.x.x.x.less into your main style.less file
+*  Import helpless.x.x.x.less into your main style.less file. HelpLess will not add any code by default
 *
 *  @Author: 
 *  m6tt: m6tt.com
@@ -60,15 +60,14 @@
 *     - .320                    =>    #hl.grid.320();
 *     - .240                    =>    #hl.grid.240();
 *     - .row                    =>    #hl.grid.row();
-*     - .col                    =>    #hl.grid.col(num);
+*     - .col                    =>    #hl.grid.col(colSpan);
 *
 *  ---------------------------------------
 *    TYPOGRAPHY
 *  ---------------------------------------
 *    - .typo                    =>    namespace, do not call directly
-*     - .serif                  =>    #hl.typo.serif();
-*     - .sans                   =>    #hl.typo.sans();
-*     - .sans                   =>    #hl.typo.sans();
+*     - .serif                  =>    #hl.typo.serif(webfont-name-optional);
+*     - .sans                   =>    #hl.typo.sans(webfont-name-optional);
 * 
 *  ---------------------------------------
 *    IMAGES
@@ -81,8 +80,12 @@
 *    USER INTERFACE
 *  ---------------------------------------
 *    - .ui                      =>    namespace, do not call directly
-*     - .clean                  =>    #hl.ui.clean();
-*     - 
+*     - .themes                 =>    namespace, do not call directly
+*      - .light                 =>    #hl.ui.themes.light(); - call within body element
+*      - .dark                  =>    #hl.ui.themes.dark(); - call within body element
+*     - .list                   =>    namespace, do not call directly
+*      - .subtle                =>    #hl.list.subtle(); - call within ul element
+*      - .horizontal            =>    #hl.list.horizontal(); - call within ul element
 *
 */
 
@@ -763,31 +766,169 @@
     *         supplied arguments and the width
     *         set in .grid()
     *
-    * @params: @num,        default = 1
+    * @params: @colSpan,  default = 1
     *
     ************************************/
-    .col(@num: 1) {
+    .col(@colSpan: 1) {
       float: left;
       display: block;
-      min-width: @col-width * @num;
+      min-width: @col-width * @colSpan;
       padding: 0 0 0 @col-gutter-percent !important;
       -webkit-box-sizing: border-box;
          -moz-box-sizing: border-box;
               box-sizing: border-box;
     }
   }
+  
+  /***********************************
+  * TYPOGRAPHY
+  ***********************************/
+  .typo {
+    
+    /************************************
+    * Serif
+    *
+    * @what?: Quickly set your font family
+    *         as a serif set
+    *
+    * @params: @webfont,  default = none
+    *
+    ************************************/
+    .serif(@webfont) {
+      font-family: @webfont, georgia, times, serif;
+    }
+    
+    /************************************
+    * Serif
+    *
+    * @what?: Quickly set your font family
+    *
+    * @params: @webfont,  default = none
+    *
+    ************************************/
+    .sans(@webfont) {
+      font-family: @webfont, Helvetica, arial, sans-serif;
+    }
+    
+  }
+  
+  /***********************************
+  * IMAGE
+  ***********************************/
+  .img {
+    
+    /************************************
+    * Responsive
+    *
+    * @what?: Set image max-width: 100%
+    *
+    ************************************/
+    .responsive() {
+      max-width: 100%;
+    }
+    
+    /************************************
+    * Framed
+    *
+    * @what?: Add a quick 10px frame to your image
+    *
+    ************************************/
+    .framed() {
+      border: 1px solid #ccc;
+      padding: 9px;
+      .drop-shadow();
+      outline: none;
+    }
+    
+  }
 
   /***********************************
-  * UI Elements
-  *
-  *
+  * UI 
   ***********************************/
   .ui {
-
-    .autoFormat() {
-      button { .button(); }
+        
+    /***********************************
+     * PREDEFINED THEMES
+     ***********************************/
+    .themes {
+      
+      /***********************************
+       * Theme: Light
+       *
+       * @what?: Quickly style the base elements
+       *         of your page
+       *
+       ***********************************/
+      .light() {
+        
+        background-color: #fff;
+        color: #555;
+        .text-shadow(1px, 1px, 1px, #fff);
+        
+      }
+      
+      /***********************************
+       * Theme: Dark
+       *
+       * @what?: Quickly style the base elements
+       *         of your page
+       *
+       ***********************************/
+      .dark() {
+        
+        background-color: #333;
+        color: #ccc;
+        .text-shadow(1px, 1px, 1px, #33);
+      }
     }
-
+    
+    /***********************************
+     * LISTS
+     ***********************************/
+    .list {
+      
+      /***********************************
+       * Subtle
+       *
+       * @what?: Quickly removes the styling 
+       *         from a list
+       *
+       ***********************************/
+      .subtle() {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      
+      /***********************************
+       * Horizontal
+       *
+       * @what?: Creates a horizontal list, 
+       *         useful for styling your site nav
+       *
+       ***********************************/
+      .horizontal(@itemSpacing: 10px) {
+        .subtle();
+        .clearfix();
+        
+        li {
+          float: left;
+          display: block;
+          margin-right: @itemSpacing;
+        }
+      }
+    }
+    
+    /***********************************
+     * FORMS
+     ***********************************/
+    .form {
+      
+      
+      
+    }
+    
+    
     // Buttons
     .button(@baseColor: #ccc, @borderRadius: 3px) {
       -webkit-appearance: button;
