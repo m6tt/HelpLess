@@ -4,8 +4,17 @@
 *  HelpLess is a Helper Library for the brilliant LESS dynamic stylesheet language.
 *  Read more about LESS: http://lesscss.org/
 *  
+*  I have tried to make HelpLess as all-encompasing as possible with support for dynamic
+*  grids and page starter themes as well as all the css3 features I could think of.
+*  Unlike other libraries, HelpLess has an invisible footprint until you call a mixin 
+*  so if you import HelpLess but don't use it, it will not increase your compiled file size
+*  
+*  @thanks: 
+*  Eric Meyer for his html reset - http://meyerweb.com/eric/tools/css/reset/
+*  Necolas for his normalize - https://github.com/necolas/normalize.css
+*
 *  @How to use:
-*  Import helpless.x.x.x.less into your main style.less file. HelpLess will not add any code by default
+*  Import helpless.x.x.x.less into your main style.less file. 
 *
 *  @Author: 
 *  m6tt: m6tt.com
@@ -19,6 +28,7 @@
 *    - .clearfix                =>    #hl.clearfix()
 *    - .centered                =>    #hl.centered(width)
 *    - .border                  =>    #hl.border(color)
+*    - .opacity                 =>    #hl.opacity(value)
 *    - .round-all-corners       =>    #hl.round-all-corners(radius)
 *    - .rounded-corners         =>    #hl.rounded-corners(topLeft, topRight, bottomRight, bottomLeft)
 *    - .transition              =>    #hl.transition(property, duration, ease, delay)
@@ -26,7 +36,6 @@
 *    - .inner-shadow            =>    #hl.inner-shadow(x, y, blur, color)
 *    - .text-shadow             =>    #hl.text-shadow(x, y, blur, color)
 *    - .background-gradient     =>    #hl.background-gradient(colorFrom, colorTo, fallbackColor, fallbackImageUrl)
-*    - .columns                 =>    #hl.columns(count, gap)
 *    - .scale                   =>    #hl.scale(amount)
 *    - .scaleX                  =>    #hl.scaleX(amount)
 *    - .scaleY                  =>    #hl.scaleY(amount)
@@ -68,6 +77,7 @@
 *    - .typo                    =>    namespace, do not call directly
 *     - .serif                  =>    #hl.typo.serif(webfont-name-optional);
 *     - .sans                   =>    #hl.typo.sans(webfont-name-optional);
+*     - .columns                =>    #hl.typo.columns(count, gap)
 * 
 *  ---------------------------------------
 *    IMAGES
@@ -81,11 +91,11 @@
 *  ---------------------------------------
 *    - .ui                      =>    namespace, do not call directly
 *     - .themes                 =>    namespace, do not call directly
-*      - .light                 =>    #hl.ui.themes.light(); - call within body element
-*      - .dark                  =>    #hl.ui.themes.dark(); - call within body element
+*      - .light                 =>    #hl.ui.themes.light(); - call within <body> element
+*      - .dark                  =>    #hl.ui.themes.dark(); - call within <body> element
 *     - .list                   =>    namespace, do not call directly
-*      - .subtle                =>    #hl.list.subtle(); - call within ul element
-*      - .horizontal            =>    #hl.list.horizontal(); - call within ul element
+*      - .subtle                =>    #hl.list.subtle(); - call within <ul> element
+*      - .horizontal            =>    #hl.list.horizontal(); - call within <ul> element
 *
 */
 
@@ -217,6 +227,22 @@
   .border(@colour: #000) {
     border: 1px solid @colour;
   }
+  
+  /************************************
+  * Opacity
+  *
+  * @what?: Add opacity to an HTML element that works
+  *         in all browsers including ie6+
+  *
+  * @params: value,      default = .5
+  *
+  ************************************/
+  .opacity(@value: .5) {
+    opacity: @value;
+    filter: ~'alpha(opacity=(@value*100))'; 
+    filter: ~'progid:DXImageTransform.Microsoft.Alpha(opacity=(@value*100))'; 
+    -ms-filter: ~'"progid:DXImageTransform.Microsoft.Alpha(opacity=(@value*100))"'; 
+  }
 
   /************************************
   * Round all corners
@@ -333,8 +359,6 @@
   *          fallbackColour,   default = #f1f1f1
   *          fallbackImageUrl, default = ''
   *
-  * @thanksBeTo: http://css-tricks.com/5700-css3-gradients/
-  *
   ************************************/
   .background-gradient(@colourfrom: #bbb, @colourTo: #f1f1f1, @fallbackColour: #f1f1f1, @fallbackImageUrl: '') {
     background-color: @fallbackColour;
@@ -345,25 +369,10 @@
     background-image: -moz-linear-gradient(bottom, @colourfrom, @colourTo);
     background-image: -ms-linear-gradient(bottom, @colourfrom, @colourTo);
     background-image: -o-linear-gradient(bottom, @colourfrom, @colourTo);
-  }
-
-  /************************************
-  * Columns
-  *
-  * @what?: Sets CSS3 columns within
-  *         blocks of html text
-  *
-  * @params: count,       default = 1
-  *          gap,         default = 10px
-  *
-  ************************************/
-  .columns(@count: 1, @gap: 10px) {
-    -moz-column-count: @count;
-    -moz-column-gap: @gap;
-    -webkit-column-count: @count;
-    -webkit-column-gap: @gap;
-    column-count: @count;
-    column-gap: @gap;
+    /* For Internet Explorer 5.5 - 7 */
+    filter: ~'progid:DXImageTransform.Microsoft.gradient(startColorstr=@colourfrom, endColorstr=@colourTo)';
+    /* For Internet Explorer 8 and newer */
+    -ms-filter: ~'"progid:DXImageTransform.Microsoft.gradient(startColorstr=@colourfrom, endColorstr=@colourTo)"';
   }
 
   /************************************
@@ -808,6 +817,25 @@
     ************************************/
     .sans(@webfont) {
       font-family: @webfont, Helvetica, arial, sans-serif;
+    }
+    
+    /************************************
+    * Columns
+    *
+    * @what?: Sets CSS3 columns within
+    *         block of html text
+    *
+    * @params: count,       default = 1
+    *          gap,         default = 10px
+    *
+    ************************************/
+    .columns(@count: 1, @gap: 10px) {
+      -moz-column-count: @count;
+      -moz-column-gap: @gap;
+      -webkit-column-count: @count;
+      -webkit-column-gap: @gap;
+      column-count: @count;
+      column-gap: @gap;
     }
     
   }
