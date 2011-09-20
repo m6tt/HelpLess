@@ -7,13 +7,11 @@
     HelpLess is a Helper Library for the brilliant LESS dynamic stylesheet language.
     Read more about LESS: http://lesscss.org/
   
-    I have tried to make HelpLess as all-encompasing as possible with support for dynamic grids and page starter themes as well as all the css3 features I could think of.
-    
-    HelpLess has an invisible footprint until you call a mixin so if you import HelpLess but don't use it, it will not increase your compiled file size.
+    HelpLess also comes bundled with [less-boilerplate](https://github.com/m6tt/less-boilerplate), which compiles LESS to CSS using the boilerplate build tool. I have tried to make HelpLess as all-encompasing as possible with support for dynamic grids and page starter themes as well as all the css3 features I could think of. HelpLess has an invisible footprint until you call a mixin so if you import HelpLess but don't use it, it will not increase your compiled file size.
 
 2. Installing
 
-    Clone the repository or download the zip and include helpless in your main style.less file
+    Clone the repository or download the zip and include helpless in your main style.less file. Alternatively you can use [less-boilerplate](https://github.com/m6tt/less-boilerplate) as mentioned above.
 
 3. Compatibility
 
