@@ -139,87 +139,87 @@
     
 5. Reference
 
-  ------------------------------------------------------------------------------
-    BASICS                    
-  ------------------------------------------------------------------------------
-    Name                             Usage
-    - .reset                   =>    #hl.reset() - call outside of element
-    - .normalize               =>    #hl.normalize - call outside of element
-    - .clearfix                =>    #hl.clearfix()
-    - .centered                =>    #hl.centered(width)
-    - .border                  =>    #hl.border(color)
-    - .opacity                 =>    #hl.opacity(value)
-    - .round-all-corners       =>    #hl.round-all-corners(radius)
-    - .rounded-corners         =>    #hl.rounded-corners(topLeft, topRight, bottomRight, bottomLeft)
-    - .transition              =>    #hl.transition(property, duration, ease, delay)
-    - .drop-shadow             =>    #hl.drop-shadow(x, y, blur, color)
-    - .inner-shadow            =>    #hl.inner-shadow(x, y, blur, color)
-    - .text-shadow             =>    #hl.text-shadow(x, y, blur, color)
-    - .background-gradient     =>    #hl.background-gradient(colorFrom, colorTo, fallbackColor, fallbackImageUrl)
-    - .scale                   =>    #hl.scale(amount)
-    - .scaleX                  =>    #hl.scaleX(amount)
-    - .scaleY                  =>    #hl.scaleY(amount)
-    - .rotate                  =>    #hl.rotate(degrees)
-    - .rotateX                 =>    #hl.rotateX(degrees)
-    - .rotateY                 =>    #hl.rotateY(degrees)
-    - .skew                    =>    #hl.skew(angleX, angleY)
-    - .skewX                   =>    #hl.skewX(angleX)
-    - .skewY                   =>    #hl.skewY(angleY)
-    - .translate               =>    #hl.translate(x, y)
-    - .translateX              =>    #hl.translateX(x)
-    - .translateY              =>    #hl.translateY(y)
-    - .matrix                  =>    #hl.matrix(n, n, n, n, n, n)
+      ------------------------------------------------------------------------------
+        BASICS                    
+      ------------------------------------------------------------------------------
+        Name                             Usage
+        - .reset                   =>    #hl.reset() - call outside of element
+        - .normalize               =>    #hl.normalize - call outside of element
+        - .clearfix                =>    #hl.clearfix()
+        - .centered                =>    #hl.centered(width)
+        - .border                  =>    #hl.border(color)
+        - .opacity                 =>    #hl.opacity(value)
+        - .round-all-corners       =>    #hl.round-all-corners(radius)
+        - .rounded-corners         =>    #hl.rounded-corners(topLeft, topRight, bottomRight, bottomLeft)
+        - .transition              =>    #hl.transition(property, duration, ease, delay)
+        - .drop-shadow             =>    #hl.drop-shadow(x, y, blur, color)
+        - .inner-shadow            =>    #hl.inner-shadow(x, y, blur, color)
+        - .text-shadow             =>    #hl.text-shadow(x, y, blur, color)
+        - .background-gradient     =>    #hl.background-gradient(colorFrom, colorTo, fallbackColor, fallbackImageUrl)
+        - .scale                   =>    #hl.scale(amount)
+        - .scaleX                  =>    #hl.scaleX(amount)
+        - .scaleY                  =>    #hl.scaleY(amount)
+        - .rotate                  =>    #hl.rotate(degrees)
+        - .rotateX                 =>    #hl.rotateX(degrees)
+        - .rotateY                 =>    #hl.rotateY(degrees)
+        - .skew                    =>    #hl.skew(angleX, angleY)
+        - .skewX                   =>    #hl.skewX(angleX)
+        - .skewY                   =>    #hl.skewY(angleY)
+        - .translate               =>    #hl.translate(x, y)
+        - .translateX              =>    #hl.translateX(x)
+        - .translateY              =>    #hl.translateY(y)
+        - .matrix                  =>    #hl.matrix(n, n, n, n, n, n)        
 
-  ------------------------------------------------------------------------------
-    GRID                       
-  ------------------------------------------------------------------------------
-    Name                             Usage
-    - .grid                    =>    namespace, do not call directly, use .make or one of the predefined grid makers
-     - .make                   =>    #hl.grid.make(width, colNumber, gutterWidth)
-     - .1200                   =>    #hl.grid.1200();
-     - .1120                   =>    #hl.grid.1120();
-     - .1040                   =>    #hl.grid.1040();
-     - .960                    =>    #hl.grid.960();
-     - .880                    =>    #hl.grid.880();
-     - .800                    =>    #hl.grid.800();
-     - .720                    =>    #hl.grid.720();
-     - .640                    =>    #hl.grid.640();
-     - .560                    =>    #hl.grid.560();
-     - .480                    =>    #hl.grid.480();
-     - .400                    =>    #hl.grid.400();
-     - .320                    =>    #hl.grid.320();
-     - .240                    =>    #hl.grid.240();
-     - .row                    =>    #hl.grid.row();
-     - .col                    =>    #hl.grid.col(colSpan);
+      ------------------------------------------------------------------------------
+        GRID                       
+      ------------------------------------------------------------------------------
+        Name                             Usage
+        - .grid                    =>    namespace, do not call directly, use .make or one of the predefined grid makers
+         - .make                   =>    #hl.grid.make(width, colNumber, gutterWidth)
+         - .1200                   =>    #hl.grid.1200();
+         - .1120                   =>    #hl.grid.1120();
+         - .1040                   =>    #hl.grid.1040();
+         - .960                    =>    #hl.grid.960();
+         - .880                    =>    #hl.grid.880();
+         - .800                    =>    #hl.grid.800();
+         - .720                    =>    #hl.grid.720();
+         - .640                    =>    #hl.grid.640();
+         - .560                    =>    #hl.grid.560();
+         - .480                    =>    #hl.grid.480();
+         - .400                    =>    #hl.grid.400();
+         - .320                    =>    #hl.grid.320();
+         - .240                    =>    #hl.grid.240();
+         - .row                    =>    #hl.grid.row();
+         - .col                    =>    #hl.grid.col(colSpan);
 
-  ------------------------------------------------------------------------------
-    TYPOGRAPHY
-  ------------------------------------------------------------------------------
-    Name                             Usage
-    - .typo                    =>    namespace, do not call directly
-     - .serif                  =>    #hl.typo.serif(webfont-name-optional);
-     - .sans                   =>    #hl.typo.sans(webfont-name-optional);
-     - .columns                =>    #hl.typo.columns(count, gap)
- 
-  ------------------------------------------------------------------------------
-    IMAGES
-  ------------------------------------------------------------------------------
-    Name                             Usage
-    - .img                     =>    namespace, do not call directly
-     - .responsive             =>    #hl.img.responsive();
-     - .framed                 =>    #hl.img.framed();
+      ------------------------------------------------------------------------------
+        TYPOGRAPHY
+      ------------------------------------------------------------------------------
+        Name                             Usage
+        - .typo                    =>    namespace, do not call directly
+         - .serif                  =>    #hl.typo.serif(webfont-name-optional);
+         - .sans                   =>    #hl.typo.sans(webfont-name-optional);
+         - .columns                =>    #hl.typo.columns(count, gap)
+     
+      ------------------------------------------------------------------------------
+        IMAGES
+      ------------------------------------------------------------------------------
+        Name                             Usage
+        - .img                     =>    namespace, do not call directly
+         - .responsive             =>    #hl.img.responsive();
+         - .framed                 =>    #hl.img.framed();    
 
-  ------------------------------------------------------------------------------
-    USER INTERFACE
-  ------------------------------------------------------------------------------
-    Name                             Usage
-    - .ui                      =>    namespace, do not call directly
-     - .themes                 =>    namespace, do not call directly
-      - .light                 =>    #hl.ui.themes.light(); - call within <body> element
-      - .dark                  =>    #hl.ui.themes.dark(); - call within <body> element
-     - .list                   =>    namespace, do not call directly
-      - .subtle                =>    #hl.list.subtle(); - call within <ul> element
-      - .horizontal            =>    #hl.list.horizontal(); - call within <ul> element
+      ------------------------------------------------------------------------------
+        USER INTERFACE
+      ------------------------------------------------------------------------------
+        Name                             Usage
+        - .ui                      =>    namespace, do not call directly
+         - .themes                 =>    namespace, do not call directly
+          - .light                 =>    #hl.ui.themes.light(); - call within <body> element
+          - .dark                  =>    #hl.ui.themes.dark(); - call within <body> element
+         - .list                   =>    namespace, do not call directly
+          - .subtle                =>    #hl.list.subtle(); - call within <ul> element
+          - .horizontal            =>    #hl.list.horizontal(); - call within <ul> element    
 
 6. Thanks 
    
