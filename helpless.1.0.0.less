@@ -362,7 +362,7 @@
   ************************************/
   .background-gradient(@colourfrom: #bbb, @colourTo: #f1f1f1, @fallbackColour: #f1f1f1, @fallbackImageUrl: '') {
     background-color: @fallbackColour;
-    background-image: url(@fallbackImageUrl);
+    background-image: url("@{fallbackImageUrl}");
     background-repeat: no-repeat;
     background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(@colourfrom), to(@colourTo));
     background-image: -webkit-linear-gradient(bottom, @colourfrom, @colourTo);
