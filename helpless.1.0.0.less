@@ -239,9 +239,9 @@
   ************************************/
   .opacity(@value: .5) {
     opacity: @value;
-    filter: ~'alpha(opacity=(@value*100))'; 
-    filter: ~'progid:DXImageTransform.Microsoft.Alpha(opacity=(@value*100))'; 
-    -ms-filter: ~'"progid:DXImageTransform.Microsoft.Alpha(opacity=(@value*100))"'; 
+    filter: ~'alpha(opacity=(@{value}*100))'; 
+    filter: ~'progid:DXImageTransform.Microsoft.Alpha(opacity=(@{value}*100))'; 
+    -ms-filter: ~'"progid:DXImageTransform.Microsoft.Alpha(opacity=(@{value}*100))"'; 
   }
 
   /************************************
@@ -370,9 +370,9 @@
     background-image: -ms-linear-gradient(bottom, @colourfrom, @colourTo);
     background-image: -o-linear-gradient(bottom, @colourfrom, @colourTo);
     /* For Internet Explorer 5.5 - 7 */
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=@colourfrom, endColorstr=@colourTo);
+    filter: ~'progid:DXImageTransform.Microsoft.gradient(startColorstr=@{colourfrom}, endColorstr=@{colourTo})';
     /* For Internet Explorer 8 and newer */
-    -ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=@colourfrom, endColorstr=@colourTo);
+    -ms-filter: ~'progid:DXImageTransform.Microsoft.gradient(startColorstr=@{colourfrom}, endColorstr=@{colourTo})';
   }
 
   /************************************
