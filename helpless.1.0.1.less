@@ -73,6 +73,7 @@
 *    - .translateX              =>    #hl.translateX(x)
 *    - .translateY              =>    #hl.translateY(y)
 *    - .matrix                  =>    #hl.matrix(n, n, n, n, n, n)
+*    - .userSelect              =>    #hl.userSelect()
 *
 *  ------------------------------------------------------------------------------
 *    GRID                       =>    syntax
@@ -620,6 +621,21 @@
     -moz-transform:matrix(@n1, @n2, @n3, @n4, @n5, @n6);
     -webkit-transform:matrix(@n1, @n2, @n3, @n4, @n5, @n6);
     -o-transform:matrix(@n1, @n2, @n3, @n4, @n5, @n6);
+  }
+
+  /************************************
+  * UserSelect
+  *
+  * @what?: Disable text selection highlighting
+  *
+  ************************************/
+  .userSelect(@value: initial) {
+    -webkit-touch-callout: @value;
+    -webkit-user-select: @value;
+    -khtml-user-select: @value;
+    -moz-user-select: @value;
+    -ms-user-select: @value;
+    user-select: @value;
   }
   
   /************************************
