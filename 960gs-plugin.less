@@ -1,0 +1,186 @@
+/* --------------------------------------------------------------------------------------
+*  960 Grid System by Nathan Smith  <http://960.gs/>
+*
+*  Adapted by Sylvain Balbous (https://github.com/sylbal) for H5BP-Less plugin
+*
+*  ------------------------------------------------------------------------------
+*    GRID 960gs                 =>    syntax
+*  ------------------------------------------------------------------------------
+*    - #960gs                   =>    namespace, do not call directly, use .make or one of the predefined grid makers
+*     - .make                   =>    #960gs > .make(colNumber, gutterWidth, gridMargin)
+*     - .12                     =>    #960gs > .grid.12();
+*     - .16                     =>    #960gs > .grid.16();
+*     - .24                     =>    #960gs > .grid.24();
+*     - .row                    =>    #960gs > .grid.row();
+*     - .col                    =>    #960gs > .grid.col(colSpan);
+*     - .alpha                  =>    #960gs > .grid.alpha();
+*     - .omega                  =>    #960gs > .grid.omega();
+*     - .prefix                 =>    #960gs > .grid.prefix(colSpan);
+*     - .suffix                 =>    #960gs > .grid.suffix(colSpan);
+*     - .push                   =>    #960gs > .grid.push(colSpan);
+*     - .pull                   =>    #960gs > .grid.pull(colSpan);
+*
+*/
+
+#960gs {
+    /************************************
+    * Make
+    *
+    * @what?: Defines the base variables needed
+    * for the 960 grid system.
+    *
+    * @params: @colnum, default = 16
+    *          @colgutter, default = 20
+    *          @margin, default = 10
+    ************************************/
+    .make(@colnum: 16, @colgutter: 20, @margin: 10) {
+        @col-width: (960px  - (@colgutter * @colnum)) / @colnum;
+        @gutter-width: 0px + @colgutter;
+        @grid-margin: 0px + @margin;
+        margin-left: auto;
+        margin-right: auto;
+        width: 960px;
+    }
+	
+    /************************************
+    * 12
+    *
+    * @what?: Predefined 12 cols grid maker
+    *
+    ************************************/
+    .12() {
+        .make(12);
+    }
+
+    /************************************
+    * 16
+    *
+    * @what?: Predefined 16 cols grid maker
+    *
+    ************************************/
+    .16() {
+        .make(16);
+    }
+
+    /************************************
+    * 24
+    *
+    * @what?: Predefined 24 cols grid maker
+    *
+    ************************************/
+    .24() {
+        .make(24, 10);
+    }
+    
+    /************************************
+    * Row
+    *
+    * @what?: Defines an element as a row.
+    * clears all clearfixes all columns
+    * directly inside.
+    *
+    ************************************/
+    .row() {
+        .clearfix();
+        display: block;
+        /*
+        width: 100% - @col-gutter-percent;
+        overflow-y: visible;
+        */
+        margin-left: @grid-margin;
+        margin-right: @grid-margin;
+    }
+
+    /************************************
+    * Col
+    *
+    * @what?: Defines an element as a column.
+    * Sets the width depending on the
+    * supplied arguments and the width
+    * set in .grid960gs()
+    *
+    * @params: @colSpan, default = 1
+    *
+    ************************************/
+    .col(@colSpan: 1) {
+        display: inline;
+        float: left;
+        width: 0px + (@col-width * @colSpan) + (@gutter-width * (@colSpan - 1));
+        margin-left: 0px + (@gutter-width/2);
+        margin-right: 0px + (@gutter-width/2);
+        -webkit-box-sizing: border-box;
+           -moz-box-sizing: border-box;
+                box-sizing: border-box;
+    }
+    
+    /************************************
+    * alpha
+    *
+    * @what?: Removes left margin
+    *
+    ************************************/
+    .alpha() {
+        margin-left: 0;
+    }
+
+    /************************************
+    * omega
+    *
+    * @what?: Removes rigt margin
+    *
+    ************************************/
+    .omega() {
+        margin-right: 0;
+    }
+    
+    /************************************
+    * prefix
+    *
+    * @what?: Adds padding before col
+    *
+    * @params: @colSpan, default = 1
+    *
+    ************************************/
+    .prefix(@colSpan: 1) {
+        padding-left: 0px + (@colSpan * (@col-width + @gutter-width));
+    }
+
+    /************************************
+    * suffix
+    *
+    * @what?: Adds padding after col
+    *
+    * @params: @colSpan, default = 1
+    *
+    ************************************/
+    .suffix(@colSpan: 1) {
+        padding-right: 0px + (@colSpan * (@col-width + @gutter-width));
+    }
+
+    /************************************
+    * push
+    *
+    * @what?: Pushes cols on the right
+    *
+    * @params: @colSpan, default = 1
+    *
+    ************************************/
+    .push(@colSpan: 1) {
+        position:relative;
+        left: 0px + (@colSpan * (@col-width + @gutter-width));
+    }
+    
+    /************************************
+    * pull
+    *
+    * @what?: Pulls cols on the left
+    *
+    * @params: @colSpan, default = 1
+    *
+    ************************************/
+    .pull(@colSpan: 1) {
+        position:relative;
+        left: 0px - (@colSpan * (@col-width + @gutter-width));
+    }
+    
+}
