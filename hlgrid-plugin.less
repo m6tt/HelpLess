@@ -1,0 +1,253 @@
+/* --------------------------------------------------------------------------------------
+*  HelpLess is released under the MIT license.
+* 
+*  Copyright (C) 2011 by Matt Woodfield
+* 
+*  Permission is hereby granted, free of charge, to any person obtaining a copy of this 
+*  software and associated documentation files (the "Software"), to deal in the Software
+*  without restriction, including without limitation the rights to use, copy, modify, 
+*  merge, publish, distribute, sublicense, and/or sell copies of the Software, and to 
+*  permit persons to whom the Software is furnished to do so, subject to the 
+*  following conditions:
+* 
+*  The above copyright notice and this permission notice shall be included in all copies 
+*  or substantial portions of the Software.
+* 
+*  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, 
+*  INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A 
+*  PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT 
+*  HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF 
+*  CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE 
+*  OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+*  --------------------------------------------------------------------------------------
+*
+*  HelpLess - A lot of Less help
+*  --------------------------------------------------------------------------------------  
+*
+*  @What is it:
+*  HelpLess is a Helper Library for the brilliant LESS dynamic stylesheet language.
+*  Read more about LESS: http://lesscss.org/
+*  
+*  I have tried to make HelpLess as all-encompasing as possible with support for dynamic
+*  grids and page starter themes as well as all the css3 features I could think of.
+*  Unlike other libraries, HelpLess has an invisible footprint until you call a mixin 
+*  so if you import HelpLess but don't use it, it will not increase your compiled file size
+*  
+*  @How to use:
+*  Import helpless.less into your main style.less file. 
+*
+*  @Author: 
+*  Matt Woodfield - @m6tt
+*
+*  @Reference:
+*  ------------------------------------------------------------------------------
+*    GRID                       =>    syntax
+*  ------------------------------------------------------------------------------
+*    - #hlgrid                  =>    namespace, do not call directly, use .make or one of the predefined grid makers
+*     - .make                   =>    #hlgrid > .make(width, colNumber, gutterWidth)
+*     - .1200                   =>    #hlgrid > .1200();
+*     - .1120                   =>    #hlgrid > .1120();
+*     - .1040                   =>    #hlgrid > 1040();
+*     - .960                    =>    #hlgrid > 960();
+*     - .880                    =>    #hlgrid > .880();
+*     - .800                    =>    #hlgrid > .800();
+*     - .720                    =>    #hlgrid > .720();
+*     - .640                    =>    #hlgrid > .640();
+*     - .560                    =>    #hlgrid > .560();
+*     - .480                    =>    #hlgrid > .480();
+*     - .400                    =>    #hlgrid > .400();
+*     - .320                    =>    #hlgrid > .320();
+*     - .240                    =>    #hlgrid > .240();
+*     - .row                    =>    #hlgrid > .row();
+*     - .col                    =>    #hlgrid > .col(colSpan);
+*
+
+/************************************
+* HelpLess grid System
+************************************/
+#hlgrid {
+    
+    /************************************
+    * Make
+    *
+    * @what?: Defines the base variables needed
+    *         for the HelpLess grid system.
+    *
+    * @params: @width,      default = 960
+    *          @colnum,     default = 16
+    *          @colgutter,  default = 10
+    *
+    ************************************/
+    .make(@width: 960, @colnum: 16, @colgutter: 10) {
+      width: 0px + @width;
+      @col-width: 100% / @colnum;
+      @col-gutter-percent: 0% + ((@colgutter / @width) * 100);
+    }
+    
+    /************************************
+    * 1200
+    *
+    * @what?: Predefined grid maker
+    *
+    ************************************/
+    .1200() {
+      .make(1200);
+    }
+
+    /************************************
+    * 1120
+    *
+    * @what?: Predefined grid maker
+    *
+    ************************************/
+    .1120() {
+      .make(1120);
+    }
+
+    /************************************
+    * 1040
+    *
+    * @what?: Predefined grid maker
+    *
+    ************************************/
+    .1040() {
+      .make(1040);
+    }
+
+    /************************************
+    * 960
+    *
+    * @what?: Predefined grid maker
+    *
+    ************************************/
+    .960() {
+      .make(960);
+    }
+
+    /************************************
+    * 880
+    *
+    * @what?: Predefined grid maker
+    *
+    ************************************/
+    .880() {
+      .make(880);
+    }
+
+    /************************************
+    * 800
+    *
+    * @what?: Predefined grid maker
+    *
+    ************************************/
+    .800() {
+      .make(800);
+    }
+
+    /************************************
+    * 720
+    *
+    * @what?: Predefined grid maker
+    *
+    ************************************/
+    .720() {
+      .make(720);
+    }
+
+    /************************************
+    * 640
+    *
+    * @what?: Predefined grid maker
+    *
+    ************************************/
+    .640() {
+      .make(640);
+    }
+
+    /************************************
+    * 560
+    *
+    * @what?: Predefined grid maker
+    *
+    ************************************/
+    .560() {
+      .make(560);
+    }
+
+    /************************************
+    * 480
+    *
+    * @what?: Predefined grid maker
+    *
+    ************************************/
+    .480() {
+      .make(480);
+    }
+
+    /************************************
+    * 400
+    *
+    * @what?: Predefined grid maker
+    *
+    ************************************/
+    .400() {
+      .make(400);
+    }
+
+    /************************************
+    * 320
+    *
+    * @what?: Predefined grid maker
+    *
+    ************************************/
+    .320() {
+      .make(320);
+    }
+
+    /************************************
+    * 240
+    *
+    * @what?: Predefined grid maker
+    *
+    ************************************/
+    .240() {
+      .make(240);
+    }
+
+    /************************************
+    * Row
+    *
+    * @what?: Defines an element as a row.
+    *         clears all clearfixes all columns
+    *         directly inside.
+    *
+    ************************************/
+    .row() {
+      .clearfix();
+      display: block;
+      width: 100%;
+      overflow-y: visible;
+      margin-left: -(@col-gutter-percent / 2);
+    }
+
+    /************************************
+    * Col
+    *
+    * @what?: Defines an element as a column.
+    *         Sets the width depending on the
+    *         supplied arguments and the width
+    *         set in .grid()
+    *
+    * @params: @colSpan,  default = 1
+    *
+    ************************************/
+    .col(@colSpan: 1) {
+      float: left;
+      display: block;
+      min-width: @col-width * @colSpan;
+      padding: 0 0 0 @col-gutter-percent !important;
+      -webkit-box-sizing: border-box;
+         -moz-box-sizing: border-box;
+              box-sizing: border-box;
+    }
+}

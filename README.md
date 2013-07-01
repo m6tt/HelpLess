@@ -7,11 +7,16 @@
     HelpLess is a Helper Library for the brilliant LESS dynamic stylesheet language.
     Read more about LESS: http://lesscss.org/
   
-    HelpLess also comes bundled with [less-boilerplate](https://github.com/m6tt/less-boilerplate), which compiles LESS to CSS using the boilerplate build tool. I have tried to make HelpLess as all-encompasing as possible with support for dynamic grids and page starter themes as well as all the css3 features I could think of. HelpLess has an invisible footprint until you call a mixin so if you import HelpLess but don't use it, it will not increase your compiled file size.
+    HelpLess also comes bundled with [html5-boilerplate-less](https://github.com/sylbal/html5-boilerplate-less), which compiles LESS to CSS using the boilerplate build tool. I have tried to make HelpLess as all-encompasing as possible with support for dynamic grids and page starter themes as well as all the css3 features I could think of. HelpLess has an invisible footprint until you call a mixin so if you import HelpLess but don't use it, it will not increase your compiled file size.
+
+    Most of the work here was made by Matt Woodfield and all his credits are present. I have forked the project as it seems to be slepping since 2012. 
+    My major contribution (so far) is the implementation of the [960 Grid System](http://960.gs). I have choose to implement it as an external plugin to give more flexibility.
+    To offer another alternative, I have included another plugin to use [Frameless](http://framelessgrid.com/).
+    Finally, the original HelpLess grid system by Matt was also extracted to run as a plugin.
 
 2. Installing
 
-    Clone the repository or download the zip and include helpless in your main style.less file. Alternatively you can use [less-boilerplate](https://github.com/m6tt/less-boilerplate) as mentioned above.
+    Clone the repository or download the zip and include helpless (and optionally the desired grid plugin) in your main style.less file. Alternatively you can use [html5-boilerplate-less](https://github.com/sylbal/html5-boilerplate-less) as mentioned above.
 
 3. Compatibility
 

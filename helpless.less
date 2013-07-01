@@ -33,12 +33,8 @@
 *  Unlike other libraries, HelpLess has an invisible footprint until you call a mixin 
 *  so if you import HelpLess but don't use it, it will not increase your compiled file size
 *  
-*  @thanks: 
-*  Eric Meyer for html reset - http://meyerweb.com/eric/tools/css/reset/
-*  Necolas for normalize - https://github.com/necolas/normalize.css
-*
 *  @How to use:
-*  Import helpless.x.x.x.less into your main style.less file. 
+*  Import helpless.less into your main style.less file. 
 *
 *  @Author: 
 *  Matt Woodfield - @m6tt
@@ -48,7 +44,6 @@
 *    BASICS                     =>    syntax
 *  ------------------------------------------------------------------------------
 *    - .reset                   =>    #hl.reset() - call outside of element
-*    - .normalize               =>    #hl.normalize - call outside of element
 *    - .clearfix                =>    #hl.clearfix()
 *    - .centered                =>    #hl.centered(width)
 *    - .border                  =>    #hl.border(color)
@@ -73,27 +68,6 @@
 *    - .translateX              =>    #hl.translateX(x)
 *    - .translateY              =>    #hl.translateY(y)
 *    - .matrix                  =>    #hl.matrix(n, n, n, n, n, n)
-*
-*  ------------------------------------------------------------------------------
-*    GRID                       =>    syntax
-*  ------------------------------------------------------------------------------
-*    - .grid                    =>    namespace, do not call directly, use .make or one of the predefined grid makers
-*     - .make                   =>    #hl.grid.make(width, colNumber, gutterWidth)
-*     - .1200                   =>    #hl.grid.1200();
-*     - .1120                   =>    #hl.grid.1120();
-*     - .1040                   =>    #hl.grid.1040();
-*     - .960                    =>    #hl.grid.960();
-*     - .880                    =>    #hl.grid.880();
-*     - .800                    =>    #hl.grid.800();
-*     - .720                    =>    #hl.grid.720();
-*     - .640                    =>    #hl.grid.640();
-*     - .560                    =>    #hl.grid.560();
-*     - .480                    =>    #hl.grid.480();
-*     - .400                    =>    #hl.grid.400();
-*     - .320                    =>    #hl.grid.320();
-*     - .240                    =>    #hl.grid.240();
-*     - .row                    =>    #hl.grid.row();
-*     - .col                    =>    #hl.grid.col(colSpan);
 *
 *  ---------------------------------------
 *    TYPOGRAPHY
@@ -154,63 +128,6 @@
   }
 
   /************************************
-  * Normalize by necolas
-  * https://github.com/necolas/normalize.css
-  ************************************/
-  .normalize() {
-    /*! normalize.css 2011-08-31T22:02 UTC · http://github.com/necolas/normalize.css */
-    article,aside,details,figcaption,figure,footer,header,hgroup,nav,section{display:block;}
-    audio,canvas,video{display:inline-block;*display:inline;*zoom:1;}audio:not([controls]){display:none;}
-    [hidden]{display:none;}
-    /*
-     * 1. Corrects text resizing oddly in IE6/7 when body font-size is set using em units
-     *    http://clagnut.com/blog/348/#c790
-     * 2. Keeps page centred in all browsers regardless of content height
-     * 3. Prevents iOS text size adjust after orientation change, without disabling user zoom
-     *    www.456bereastreet.com/archive/201012/controlling_text_size_in_safari_for_ios_without_disabling_user_zoom/
-     */
-    html {font-size:100%;overflow-y:scroll;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;}
-    body{margin:0;font-size:13px;line-height:1.231;}/*Added font-size and line-height addition as seen in html5 boilerplate*/
-    body,button,input,select,textarea{font-family:sans-serif;}
-    a{color:#00e;}
-    a:visited{color:#551a8b;}
-    a:focus{outline:thin dotted;}
-    a:hover,a:active{outline:0;}
-    abbr[title]{border-bottom:1px dotted;}
-    b,strong{font-weight:bold;}
-    blockquote{margin:1em 40px;}
-    dfn{font-style:italic;}
-    mark{background:#ff0;color:#000;}
-    /*Corrects font family set oddly in IE6, S4/5, Chrome en.wikipedia.org/wiki/User:Davidgothberg/Test59*/
-    pre,code,kbd,samp{font-family: monospace, serif;_font-family:'courier new',monospace;font-size:1em;}
-    pre{white-space:pre;white-space:pre-wrap;word-wrap:break-word;}
-    q{quotes:none;}
-    q:before,q:after{content:'';content:none;}small{font-size:75%;}
-    sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline;}
-    sup{top:-0.5em;}
-    sub{bottom:-0.25em;}
-    ul,ol{margin:1em 0;padding:0 0 0 40px;}
-    dd{margin:0 0 0 40px;}
-    nav ul,nav ol{list-style:none;list-style-image:none;margin:0;padding:0;}/*Cleared margin and padding as seen in html5 boilerplate*/
-    img{border:0;-ms-interpolation-mode:bicubic;}
-    svg:not(:root){overflow:hidden;}
-    figure{margin:0;}
-    form{margin:0;}
-    fieldset{margin:0 2px;padding:0.35em 0.625em 0.75em;}
-    legend{border:0;*margin-left:-7px;}
-    button,input,select,textarea{font-size:100%;margin:0;vertical-align:baseline;*vertical-align:middle;}
-    button,input {line-height: normal;*overflow:visible;}
-    table button,table input{*overflow:auto;}
-    button,html input[type="button"],input[type="reset"],input[type="submit"]{cursor:pointer;-webkit-appearance:button;}
-    input[type="checkbox"],input[type="radio"]{box-sizing:border-box;padding:0;}
-    input[type="search"]{-webkit-appearance:textfield;-moz-box-sizing:content-box;-webkit-box-sizing:content-box;box-sizing: content-box;}
-    input[type="search"]::-webkit-search-decoration{-webkit-appearance:none;}
-    button::-moz-focus-inner,input::-moz-focus-inner {border:0;padding:0;}
-    textarea {overflow:auto;vertical-align:top;}
-    table {border-collapse:collapse;border-spacing:0;}
-  }
-
-  /************************************
   * Clearfix
   *
   * what?: Contains floats, for more info see h5bp.com/q.
@@ -261,10 +178,12 @@
   *
   ************************************/
   .opacity(@value: .5) {
+    -moz-opacity: @value;
+    -webkit-opacity: @value;
     opacity: @value;
-    filter: ~'alpha(opacity=(@value*100))'; 
-    filter: ~'progid:DXImageTransform.Microsoft.Alpha(opacity=(@value*100))'; 
-    -ms-filter: ~'"progid:DXImageTransform.Microsoft.Alpha(opacity=(@value*100))"'; 
+    filter: ~'alpha(opacity=(@{value}*100))'; 
+    filter: ~'progid:DXImageTransform.Microsoft.Alpha(opacity=(@{value}*100))'; 
+    -ms-filter: ~'"progid:DXImageTransform.Microsoft.Alpha(opacity=(@{value}*100))"'; 
   }
 
   /************************************
@@ -385,7 +304,7 @@
   ************************************/
   .background-gradient(@colourfrom: #bbb, @colourTo: #f1f1f1, @fallbackColour: #f1f1f1, @fallbackImageUrl: '') {
     background-color: @fallbackColour;
-    background-image: url("@fallbackImage");
+    background-image: url("@{fallbackImageUrl}");
     background-repeat: no-repeat;
     background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(@colourfrom), to(@colourTo));
     background-image: -webkit-linear-gradient(bottom, @colourfrom, @colourTo);
@@ -393,9 +312,9 @@
     background-image: -ms-linear-gradient(bottom, @colourfrom, @colourTo);
     background-image: -o-linear-gradient(bottom, @colourfrom, @colourTo);
     /* For Internet Explorer 5.5 - 7 */
-    filter: ~'progid:DXImageTransform.Microsoft.gradient(startColorstr=@colourfrom, endColorstr=@colourTo)';
+    filter: ~'progid:DXImageTransform.Microsoft.gradient(startColorstr=@{colourfrom}, endColorstr=@{colourTo})';
     /* For Internet Explorer 8 and newer */
-    -ms-filter: ~'"progid:DXImageTransform.Microsoft.gradient(startColorstr=@colourfrom, endColorstr=@colourTo)"';
+    -ms-filter: ~'"progid:DXImageTransform.Microsoft.gradient(startColorstr=@{colourfrom}, endColorstr=@{colourTo})"';
   }
 
   /************************************
@@ -620,196 +539,6 @@
     -moz-transform:matrix(@n1, @n2, @n3, @n4, @n5, @n6);
     -webkit-transform:matrix(@n1, @n2, @n3, @n4, @n5, @n6);
     -o-transform:matrix(@n1, @n2, @n3, @n4, @n5, @n6);
-  }
-  
-  /************************************
-  * Grid
-  ************************************/
-  .grid {
-    
-    /************************************
-    * Make
-    *
-    * @what?: Defines the base variables needed
-    *         for the HelpLess grid system.
-    *
-    * @params: @width,      default = 960
-    *          @colnum,     default = 16
-    *          @colgutter,  default = 10
-    *
-    ************************************/
-    .make(@width: 960, @colnum: 16, @colgutter: 10) {
-      width: 0px + @width;
-      @col-width: 100% / @colnum;
-      @col-gutter-percent: 0% + ((@colgutter / @width) * 100);
-    }
-    
-    /************************************
-    * 1200
-    *
-    * @what?: Predefined grid maker
-    *
-    ************************************/
-    .1200() {
-      .make(1200);
-    }
-
-    /************************************
-    * 1120
-    *
-    * @what?: Predefined grid maker
-    *
-    ************************************/
-    .1120() {
-      .make(1120);
-    }
-
-    /************************************
-    * 1040
-    *
-    * @what?: Predefined grid maker
-    *
-    ************************************/
-    .1040() {
-      .make(1040);
-    }
-
-    /************************************
-    * 960
-    *
-    * @what?: Predefined grid maker
-    *
-    ************************************/
-    .960() {
-      .make(960);
-    }
-
-    /************************************
-    * 880
-    *
-    * @what?: Predefined grid maker
-    *
-    ************************************/
-    .880() {
-      .make(880);
-    }
-
-    /************************************
-    * 800
-    *
-    * @what?: Predefined grid maker
-    *
-    ************************************/
-    .800() {
-      .make(800);
-    }
-
-    /************************************
-    * 720
-    *
-    * @what?: Predefined grid maker
-    *
-    ************************************/
-    .720() {
-      .make(720);
-    }
-
-    /************************************
-    * 640
-    *
-    * @what?: Predefined grid maker
-    *
-    ************************************/
-    .640() {
-      .make(640);
-    }
-
-    /************************************
-    * 560
-    *
-    * @what?: Predefined grid maker
-    *
-    ************************************/
-    .560() {
-      .make(560);
-    }
-
-    /************************************
-    * 480
-    *
-    * @what?: Predefined grid maker
-    *
-    ************************************/
-    .480() {
-      .make(480);
-    }
-
-    /************************************
-    * 400
-    *
-    * @what?: Predefined grid maker
-    *
-    ************************************/
-    .400() {
-      .make(400);
-    }
-
-    /************************************
-    * 320
-    *
-    * @what?: Predefined grid maker
-    *
-    ************************************/
-    .320() {
-      .make(320);
-    }
-
-    /************************************
-    * 240
-    *
-    * @what?: Predefined grid maker
-    *
-    ************************************/
-    .240() {
-      .make(240);
-    }
-
-    /************************************
-    * Row
-    *
-    * @what?: Defines an element as a row.
-    *         clears all clearfixes all columns
-    *         directly inside.
-    *
-    ************************************/
-    .row() {
-      .clearfix();
-      display: block;
-      width: 100%;
-      overflow-y: visible;
-      margin-left: -(@col-gutter-percent / 2);
-    }
-
-    /************************************
-    * Col
-    *
-    * @what?: Defines an element as a column.
-    *         Sets the width depending on the
-    *         supplied arguments and the width
-    *         set in .grid()
-    *
-    * @params: @colSpan,  default = 1
-    *
-    ************************************/
-    .col(@colSpan: 1) {
-      float: left;
-      display: block;
-      min-width: @col-width * @colSpan;
-      padding: 0 0 0 @col-gutter-percent !important;
-      -webkit-box-sizing: border-box;
-         -moz-box-sizing: border-box;
-              box-sizing: border-box;
-    }
   }
   
   /***********************************
